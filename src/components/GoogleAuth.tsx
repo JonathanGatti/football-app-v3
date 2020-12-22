@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { clientId } from '../config';
+import { connect } from 'react-redux';
+import { signIn, signOut } from '../actions';
 
-function GoogleAuth() {
-  const [isSignedIn, setIsSignedIn] = useState<boolean | null>(null);
+interface GoogleAuthProps {
+  isSignedIn: boolean | null;
+  signIn: Function;
+  signOut: Function;
+}
+
+function GoogleAuth({ isSignedIn, signIn, signOut }: GoogleAuthProps) {
   useEffect(() => {
     window.gapi.load('client:auth2', () => {
       window.gapi.client
@@ -12,22 +19,25 @@ function GoogleAuth() {
         })
         .then(() => {
           let auth = window.gapi.auth2.getAuthInstance();
-          setIsSignedIn(auth.isSignedIn.get());
+          onAuthChange(auth.isSignedIn.get());
           auth.isSignedIn.listen(onAuthChange);
         });
     });
   }, []);
 
-  const onAuthChange = () => {
-    let auth = window.gapi.auth2.getAuthInstance();
-    setIsSignedIn(auth.isSignedIn.get());
+  const onAuthChange = (isSignedIn: boolean) => {
+    if (isSignedIn) {
+      signIn();
+    } else {
+      signOut();
+    }
   };
 
-  const handleSignInButton = (): void => {
+  const handleSignInButton = () => {
     window.gapi.auth2.getAuthInstance().signIn();
   };
 
-  const handleSignOutButton = (): void => {
+  const handleSignOutButton = () => {
     window.gapi.auth2.getAuthInstance().signOut();
   };
 
@@ -37,16 +47,16 @@ function GoogleAuth() {
     }
     if (isSignedIn) {
       return (
-        <button onClick={handleSignOutButton} className="ui red google button">
+        <button onClick={handleSignOutButton} className="ui red button">
           <i className="google icon" />
           Sign Out
         </button>
       );
     } else if (!isSignedIn) {
       return (
-        <button onClick={handleSignInButton} className="ui green google button">
+        <button onClick={handleSignInButton} className="ui red button">
           <i className="google icon" />
-          Sign In
+          Sign In with Google
         </button>
       );
     }
@@ -55,4 +65,7 @@ function GoogleAuth() {
   return <div>{renderAuthButton()}</div>;
 }
 
-export default GoogleAuth;
+const mapStateToProps = (state: { auth: { isSignedIn: boolean | null } }) => {
+  return { isSignedIn: state.auth.isSignedIn };
+};
+export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth);

@@ -1,8 +1,6 @@
 import { combineReducers} from 'redux';
-import { playersReducer } from './playersReducer';
-
-
+import  authReducer  from './authReducer';
 
 export const reducers = combineReducers({
-  players: playersReducer,
+  auth: authReducer,
 })
