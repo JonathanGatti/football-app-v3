@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import GoogleAuth from './GoogleAuth';
 import styled from 'styled-components';
 
 const Navbar = styled.div`
@@ -10,15 +11,6 @@ const Navbar = styled.div`
   height: 6vh;
   width: 100vw;
   align-items: center;
-  button {
-    margin-left: auto;
-    margin-right: 1em;
-    background-color: #df3b15;
-    border-radius: 5px;
-    padding: 10px 20px;
-    color: white;
-    font-size: 16px;
-  }
   .links {
     width: 20%;
     display: flex;
@@ -37,11 +29,11 @@ const Header = () => {
         <Link className="link" to="/">
           Home
         </Link>
-        <Link className="link" to="/team/create">
-          Create A New Team
+        <Link className="link" to="/teams">
+          Your Teams
         </Link>
       </div>
-      <button>Log In</button>
+      <GoogleAuth />
     </Navbar>
   );
 };
