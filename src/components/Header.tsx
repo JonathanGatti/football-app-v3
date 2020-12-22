@@ -11,6 +11,7 @@ const Navbar = styled.div`
   height: 6vh;
   width: 100vw;
   align-items: center;
+  justify-content: space-between;
   .links {
     width: 20%;
     display: flex;
