@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { clientId } from '../config';
 
 function GoogleAuth() {
-  const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
+  const [isSignedIn, setIsSignedIn] = useState<boolean | null>(null);
   useEffect(() => {
     window.gapi.load('client:auth2', () => {
       window.gapi.client
@@ -22,17 +22,29 @@ function GoogleAuth() {
     let auth = window.gapi.auth2.getAuthInstance();
     setIsSignedIn(auth.isSignedIn.get());
   };
+
+  const handleSignInButton = (): void => {
+    window.gapi.auth2.getAuthInstance().signIn();
+  };
+
+  const handleSignOutButton = (): void => {
+    window.gapi.auth2.getAuthInstance().signOut();
+  };
+
   const renderAuthButton = () => {
+    if (isSignedIn === null) {
+      return null;
+    }
     if (isSignedIn) {
       return (
-        <button className="ui red google button">
+        <button onClick={handleSignOutButton} className="ui red google button">
           <i className="google icon" />
           Sign Out
         </button>
       );
     } else if (!isSignedIn) {
       return (
-        <button className="ui green google button">
+        <button onClick={handleSignInButton} className="ui green google button">
           <i className="google icon" />
           Sign In
         </button>
