@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { clientId } from '../config';
 import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
