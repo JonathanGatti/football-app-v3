@@ -6,7 +6,7 @@ const HomePage = styled.div`
   align-items: center;
   justify-content: center;
   h1 {
-    color: white;
+    color: black;
     font-weight: 500;
     letter-spacing: 2px;
   }

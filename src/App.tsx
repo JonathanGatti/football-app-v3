@@ -11,7 +11,7 @@ const AppContainer = styled.div`
   font-family: 'Hind Siliguri', sans-serif;
   width: 100vw;
   height: 100vh;
-  background-color: #17135d;
+  background-color: white;
 `;
 
 function App() {
