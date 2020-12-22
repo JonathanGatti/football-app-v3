@@ -26,8 +26,9 @@ function GoogleAuth({ isSignedIn, signIn, signOut }: GoogleAuthProps) {
   }, []);
 
   const onAuthChange = (isSignedIn: boolean) => {
+    let auth = window.gapi.auth2.getAuthInstance();
     if (isSignedIn) {
-      signIn();
+      signIn(auth.currentUser.get().getId());
     } else {
       signOut();
     }
@@ -65,7 +66,13 @@ function GoogleAuth({ isSignedIn, signIn, signOut }: GoogleAuthProps) {
   return <div>{renderAuthButton()}</div>;
 }
 
-const mapStateToProps = (state: { auth: { isSignedIn: boolean | null } }) => {
-  return { isSignedIn: state.auth.isSignedIn };
+interface stateProps {
+  auth: {
+    isSignedIn: boolean | null;
+    userId: string | number | null;
+  };
+}
+const mapStateToProps = (state: stateProps) => {
+  return { isSignedIn: state.auth.isSignedIn, userId: state.auth.userId };
 };
 export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth);
