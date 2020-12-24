@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { getPlayer } from '../api/externalApi';
 import { Player } from '../interfaces';
 
-function SearchPlayerForm({ team, setTeam }: any) {
+interface SearchPlayerFormInterface {
+  team: Player[];
+  setTeam: Function;
+}
+
+function SearchPlayerForm({ team, setTeam }: SearchPlayerFormInterface) {
   const [name, setName] = useState('');
   const [searchResult, setSearchResult] = useState([]);
 

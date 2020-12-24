@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import pitch from '../assets/imgs/3dsection.png';
 import SearchPlayerForm from '../components/SearchPlayerForm';
 import { classic, defensive, offensive } from '../utils/teamModules';
+import PlayerCard from '../components/PlayerCard';
 import { Player } from '../interfaces';
 
 const Grid = styled.div`
@@ -17,7 +18,7 @@ const Grid = styled.div`
   justify-content: center;
 `;
 
-const PlayerCard = styled.div`
+const PlayerDiv = styled.div`
   display: flex;
   justify-content: center;
 `;
@@ -34,13 +35,13 @@ function CreateTeam() {
           {module.map((size, i) => (
             <div className={`${size} wide column`}>
               {!team[i] ? (
-                <PlayerCard key={i}>
+                <PlayerDiv key={i}>
                   <SearchPlayerForm team={team} setTeam={setTeam} />
-                </PlayerCard>
+                </PlayerDiv>
               ) : (
-                <PlayerCard key={i}>
-                  <div>{team[i].player_name}</div>
-                </PlayerCard>
+                <PlayerDiv key={i}>
+                  <PlayerCard player={team[i]} />
+                </PlayerDiv>
               )}
             </div>
           ))}
