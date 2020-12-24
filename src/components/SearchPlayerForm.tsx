@@ -6,14 +6,16 @@ function SearchPlayerForm({ team, setTeam }: any) {
   const [name, setName] = useState('');
   const [searchResult, setSearchResult] = useState([]);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async () => {
     const res = await getPlayer(name);
-    console.log(res);
     setSearchResult(res);
   };
 
   const handleChange = (e: any) => {
     setName(e.target.value);
+  };
+  const reset = () => {
+    setName('');
   };
   const handleClick = (player: Player) => {
     setTeam([...team, player]);
@@ -24,8 +26,8 @@ function SearchPlayerForm({ team, setTeam }: any) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          handleSubmit(e);
-          setName('');
+          handleSubmit();
+          reset();
         }}
       >
         <input type="text" onChange={handleChange} />
