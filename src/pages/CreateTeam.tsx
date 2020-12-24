@@ -33,8 +33,8 @@ function CreateTeam() {
   };
 
   const handleSelectChange = (e: any) => {
-    setModule(e.target.value);
-    console.log(module);
+    const newModule = e.target.value.split(',');
+    setModule(newModule);
   };
   const handleNameChange = (e: any) => {
     setTeamName(e.target.value);
