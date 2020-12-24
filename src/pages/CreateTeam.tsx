@@ -56,7 +56,7 @@ function CreateTeam() {
   };
 
   return (
-    <div>
+    <div style={{ backgroundColor: '#17135d' }}>
       <h1>Create Your Team</h1>
       <Header>
         <Form onSubmit={handleSubmit}>
