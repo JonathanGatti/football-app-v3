@@ -24,12 +24,40 @@ const PlayerDiv = styled.div`
 `;
 
 function CreateTeam() {
-  const [module, setModule] = useState(defensive);
+  const [module, setModule] = useState<string[]>(defensive);
+  const [teamName, setTeamName] = useState('');
   const [team, setTeam] = useState<Player[]>([]);
+
+  const handleSubmit = () => {
+    console.log(teamName);
+  };
+
+  const handleSelectChange = (e: any) => {
+    setModule(e.target.value);
+    console.log(module);
+  };
+  const handleNameChange = (e: any) => {
+    setTeamName(e.target.value);
+  };
 
   return (
     <div>
       <h1>Create Team</h1>
+      <p>{teamName}</p>
+      <form
+        className="form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+      >
+        <input placeholder="Name Your team" onChange={handleNameChange} />
+      </form>
+      <select value={module} onChange={handleSelectChange}>
+        <option value={defensive}>defensive 5-3-2</option>
+        <option value={classic}>classic 4-4-2</option>
+        <option value={offensive}>offensive 4-3-3</option>
+      </select>
       <Grid>
         <div className="ui centered grid">
           {module.map((size, i) => (
