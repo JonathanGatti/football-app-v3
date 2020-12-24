@@ -57,7 +57,11 @@ function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
           <Modal.Content>
             <List>
               {searchResult.map((player: Player) => (
-                <SearchResultList player={player} onClick={handleClick} />
+                <SearchResultList
+                  onClick={handleClick}
+                  onOpen={setOpen}
+                  player={player}
+                />
               ))}
             </List>
           </Modal.Content>

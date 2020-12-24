@@ -1,15 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Player } from '../interfaces';
-import { Button, Header, Icon, Modal, List } from 'semantic-ui-react';
+import { Button, Icon, List } from 'semantic-ui-react';
 
 interface SearchResultListProps {
   player: Player;
   onClick: Function;
+  onOpen: Function;
 }
 
-function SearchResultList({ player, onClick }: SearchResultListProps) {
+function SearchResultList({ player, onClick, onOpen }: SearchResultListProps) {
   return (
-    <List.Item onClick={() => onClick(player)}>{player.player_name}</List.Item>
+    <List.Item>
+      <Icon name="user" />
+      {player.player_name}
+      <Button
+        onClick={() => {
+          onOpen(false);
+          onClick(player);
+        }}
+      >
+        Add To The Team
+      </Button>
+    </List.Item>
   );
 }
 
