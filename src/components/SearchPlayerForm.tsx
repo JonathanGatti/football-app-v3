@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { getPlayer } from '../api/externalApi';
 import { Player } from '../interfaces';
+import SearchResultList from './SearchResultList';
 
 interface SearchPlayerFormProps {
   team: Player[];
@@ -35,19 +36,17 @@ function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
           reset();
         }}
       >
-        <input type="text" onChange={handleChange} />
+        <div className="ui icon input loading">
+          <input type="text" placeholder="Search..." onChange={handleChange} />
+        </div>
       </form>
-      <ul>
-        {searchResult === undefined ? (
-          <div>name not found</div>
-        ) : (
-          searchResult.map((player: Player) => (
-            <div onClick={() => handleClick(player)}>
-              <li key={player.player_id}>{player.player_name}</li>
-            </div>
-          ))
-        )}
-      </ul>
+      {searchResult === undefined ? (
+        <div>name not found</div>
+      ) : (
+        searchResult.map((player: Player) => (
+          <SearchResultList player={player} onClick={handleClick} />
+        ))
+      )}
     </div>
   );
 }

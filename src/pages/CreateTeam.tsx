@@ -51,9 +51,15 @@ function CreateTeam() {
           handleSubmit();
         }}
       >
-        <input placeholder="Name Your team" onChange={handleNameChange} />
+        <div className="ui  input ">
+          <input placeholder="Name Your team" onChange={handleNameChange} />
+        </div>
       </form>
-      <select value={module} onChange={handleSelectChange}>
+      <select
+        value={module}
+        className="ui dropdown"
+        onChange={handleSelectChange}
+      >
         <option value={defensive}>defensive 5-3-2</option>
         <option value={classic}>classic 4-4-2</option>
         <option value={offensive}>offensive 4-3-3</option>
