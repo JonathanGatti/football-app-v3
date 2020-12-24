@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { getPlayer } from '../api/externalApi';
 import { Player } from '../interfaces';
 
-function SearchPlayerForm() {
+function SearchPlayerForm({ team, setTeam }: any) {
   const [name, setName] = useState('');
   const [searchResult, setSearchResult] = useState([]);
 
@@ -14,7 +14,10 @@ function SearchPlayerForm() {
 
   const handleChange = (e: any) => {
     setName(e.target.value);
-    console.log(name);
+  };
+  const handleClick = (player: Player) => {
+    setTeam([...team, player]);
+    console.log(team);
   };
   return (
     <div>
@@ -22,14 +25,21 @@ function SearchPlayerForm() {
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit(e);
+          setName('');
         }}
       >
         <input type="text" onChange={handleChange} />
       </form>
       <ul>
-        {searchResult.map((player: Player) => (
-          <li key={player.player_id}>{player.player_name}</li>
-        ))}
+        {searchResult === undefined ? (
+          <div>name not found</div>
+        ) : (
+          searchResult.map((player: Player) => (
+            <div onClick={() => handleClick(player)}>
+              <li key={player.player_id}>{player.player_name}</li>
+            </div>
+          ))
+        )}
       </ul>
     </div>
   );
