@@ -5,9 +5,24 @@ import SearchPlayerForm from '../components/SearchPlayerForm';
 import { classic, defensive, offensive } from '../utils/teamModules';
 import PlayerCard from '../components/PlayerCard';
 import { Player } from '../interfaces';
+import { Label, Form } from 'semantic-ui-react';
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  margin-bottom: 1rem;
+  p {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+`;
 
 const Grid = styled.div`
-  width: 80%;
+  width: 100%;
   height: 80vh;
   background-image: url(${pitch});
   background-position: center;
@@ -42,28 +57,31 @@ function CreateTeam() {
 
   return (
     <div>
-      <h1>Create Team</h1>
-      <p>{teamName}</p>
-      <form
-        className="form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit();
-        }}
-      >
-        <div className="ui  input ">
-          <input placeholder="Name Your team" onChange={handleNameChange} />
-        </div>
-      </form>
-      <select
-        value={module}
-        className="ui dropdown"
-        onChange={handleSelectChange}
-      >
-        <option value={defensive}>defensive 5-3-2</option>
-        <option value={classic}>classic 4-4-2</option>
-        <option value={offensive}>offensive 4-3-3</option>
-      </select>
+      <h1>Create Your Team</h1>
+      <Header>
+        <Form onSubmit={handleSubmit}>
+          <Form.Field>
+            <Label>
+              Choose a Name
+              <input placeholder="Name Your team" onChange={handleNameChange} />
+            </Label>
+          </Form.Field>
+        </Form>
+
+        <p>{teamName}</p>
+        <Label>
+          Select Your Module
+          <select
+            value={module}
+            className="ui dropdown"
+            onChange={handleSelectChange}
+          >
+            <option value={defensive}>defensive 5-3-2</option>
+            <option value={classic}>classic 4-4-2</option>
+            <option value={offensive}>offensive 4-3-3</option>
+          </select>
+        </Label>
+      </Header>
       <Grid>
         <div className="ui centered grid">
           {module.map((size, i) => (

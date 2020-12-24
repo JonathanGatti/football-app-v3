@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { getPlayer } from '../api/externalApi';
 import { Player } from '../interfaces';
 import SearchResultList from './SearchResultList';
-import { Button, Header, Icon, Modal, List } from 'semantic-ui-react';
+import { Header, Modal, List } from 'semantic-ui-react';
 
 interface SearchPlayerFormProps {
   team: Player[];
