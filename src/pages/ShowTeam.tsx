@@ -13,19 +13,6 @@ interface ShowTeam {
 function ShowTeam({ match, fetchTeam, team, auth }: ShowTeam) {
   useEffect(() => {
     fetchTeam(match.params.id);
-    const get = async () => {
-      const res = await getPlayers();
-      console.log(res);
-      const ronnie = res.filter((player: any) => {
-        if (!player.player_name) {
-          return null;
-        } else {
-          return player.player_name.toLowerCase().includes('ronaldo');
-        }
-      });
-      console.log(ronnie);
-    };
-    get();
   }, [auth.isSignedIn]);
 
   const renderTeam = () => {

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { getPlayer } from '../api/externalApi';
-import { postPlayer } from '../api/localApi';
+import { getPlayers, postPlayer } from '../api/localApi';
 import { Player } from '../interfaces';
 import SearchResultList from './SearchResultList';
+import { getPlayersAndFilterByName } from '../utils/getPlayersAndFilterByName';
 import { Header, Modal, List, Icon, Input } from 'semantic-ui-react';
 
 interface SearchPlayerFormProps {
@@ -17,8 +18,12 @@ function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
 
   const handleSubmit = async () => {
     setOpen(true);
-    const res = await getPlayer(name);
-    setSearchResult(res);
+    try {
+      let res = await getPlayersAndFilterByName(name);
+      setSearchResult(res);
+    } catch (e) {
+      throw new Error(e);
+    }
   };
 
   const handleChange = (e: any) => {
