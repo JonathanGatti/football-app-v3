@@ -22,7 +22,7 @@ function App() {
         <Route exact path="/" render={() => <Home />} />
         <Route exact path="/team/create" render={() => <CreateTeam />} />
         <Route exact path="/team/show" render={() => <ShowTeam />} />
-        <Route exact path="/teams" render={() => <TeamsList />} />
+        <Route exact path="/teams/list" render={() => <TeamsList />} />
       </Switch>
     </AppContainer>
   );

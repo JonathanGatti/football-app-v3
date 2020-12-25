@@ -62,7 +62,7 @@ function Home() {
         <Link to="/" className="btns">
           Fight Two Teams
         </Link>
-        <Link to="/" className="btns">
+        <Link to="/teams/list" className="btns">
           List of all the Teams
         </Link>
       </div>
