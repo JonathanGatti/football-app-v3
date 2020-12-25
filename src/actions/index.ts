@@ -38,3 +38,11 @@ export const createTeam = (team: Team ) => {
     dispatch({ type: CREATE_TEAM, payload: res.data })
   }
 }
+
+export const deleteTeam = (id: string) => {
+  return async (dispatch: any) => {
+    axios.delete(`http://127.0.0.1:3002/api/teams/${id}`)
+
+    dispatch({ type: DELETE_TEAM, payload: id })
+  }
+}
