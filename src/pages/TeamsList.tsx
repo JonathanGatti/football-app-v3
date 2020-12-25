@@ -1,10 +1,18 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Team } from '../interfaces';
 import { fetchTeams, deleteTeam } from '../actions';
 import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-function TeamsList({ teams, auth, fetchTeams, deleteTeam }: any) {
+interface TeamsList {
+  teams: any;
+  auth: { isSignedIn: boolean; userId: string };
+  fetchTeams: Function;
+  deleteTeam: Function;
+}
+
+function TeamsList({ teams, auth, fetchTeams, deleteTeam }: TeamsList) {
   useEffect(() => {
     fetchTeams();
   }, [auth.isSignedIn]);
@@ -32,7 +40,12 @@ function TeamsList({ teams, auth, fetchTeams, deleteTeam }: any) {
   return <div>{renderTeams()}</div>;
 }
 
-const mapStateToProps = (state: any) => {
+interface StateToProps {
+  teams: Team[];
+  auth: { isSignedIn: boolean; userId: string };
+}
+
+const mapStateToProps = (state: StateToProps) => {
   return { teams: state.teams, auth: state.auth };
 };
 export default connect(mapStateToProps, { fetchTeams, deleteTeam })(TeamsList);

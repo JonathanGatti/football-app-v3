@@ -2,7 +2,14 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchTeam } from '../actions';
 
-function ShowTeam({ match, fetchTeam, team, auth }: any) {
+interface ShowTeam {
+  match: any;
+  fetchTeam: Function;
+  team: any;
+  auth: { isSignedIn: boolean; userId: string };
+}
+
+function ShowTeam({ match, fetchTeam, team, auth }: ShowTeam) {
   useEffect(() => {
     fetchTeam(match.params.id);
   }, [auth.isSignedIn]);

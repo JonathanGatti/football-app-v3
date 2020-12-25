@@ -40,7 +40,12 @@ const PlayerDiv = styled.div`
   justify-content: center;
 `;
 
-function CreateTeam({ createTeam, auth }: any) {
+interface CreateTeamProps {
+  createTeam: Function;
+  auth: { userId: string; isSigendIn: boolean };
+}
+
+function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   const [module, setModule] = useState<string[]>(defensive);
   const [teamName, setTeamName] = useState('');
   const [team, setTeam] = useState<Player[]>([]);
