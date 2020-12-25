@@ -13,13 +13,11 @@ function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
   const [name, setName] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [open, setOpen] = useState(false);
-  const [spinner, setSpinner] = useState(false);
 
   const handleSubmit = async () => {
+    setOpen(true);
     const res = await getPlayer(name);
     setSearchResult(res);
-    setOpen(true);
-    setSpinner(true);
   };
 
   const handleChange = (e: any) => {
@@ -47,21 +45,20 @@ function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
             placeholder="Search..."
             onChange={handleChange}
           />
-          {spinner && open ? <Icon loading name="spinner" /> : ''}
         </div>
       </form>
-      {searchResult === undefined ? (
-        <div>name not found</div>
-      ) : (
-        <Modal
-          basic
-          onClose={() => setOpen(false)}
-          onOpen={() => setOpen(true)}
-          open={open}
-          size="small"
-        >
-          <Header icon>List of Players</Header>
-          <Modal.Content>
+      <Modal
+        basic
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        open={open}
+        size="small"
+      >
+        <Header icon>List of Players</Header>
+        <Modal.Content>
+          {searchResult.length === 0 ? (
+            <Icon loading name="spinner" />
+          ) : (
             <List>
               {searchResult.map((player: Player) => (
                 <SearchResultList
@@ -71,9 +68,9 @@ function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
                 />
               ))}
             </List>
-          </Modal.Content>
-        </Modal>
-      )}
+          )}
+        </Modal.Content>
+      </Modal>
     </>
   );
 }
