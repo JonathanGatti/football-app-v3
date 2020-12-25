@@ -41,6 +41,16 @@ export const postPlayer = (data: Player) => {
       console.log(e)
     })
 }
+
+export const getPlayers = async () => {
+  try {
+    const res = await axios.get('http://127.0.0.1:8080/api/players');
+    return res.data;
+  }
+  catch(e) {
+    console.log(e);
+  }
+}
 export const deleteTeam = (id: string) => {
   axios.delete(`http://127.0.0.1:8080/api/teams/${id}`)
 }
