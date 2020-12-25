@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Player } from '../interfaces';
 
 const PlayerCardDiv = styled.div`
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   background-color: gold;
   clip-path: polygon(
     50% 1%,

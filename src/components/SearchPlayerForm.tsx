@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { getPlayer } from '../api/externalApi';
 import { Player } from '../interfaces';
 import SearchResultList from './SearchResultList';
-import { Header, Modal, List } from 'semantic-ui-react';
+import { Header, Modal, List, Icon } from 'semantic-ui-react';
 
 interface SearchPlayerFormProps {
   team: Player[];
@@ -13,11 +13,13 @@ function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
   const [name, setName] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [open, setOpen] = useState(false);
+  const [spinner, setSpinner] = useState(false);
 
   const handleSubmit = async () => {
     const res = await getPlayer(name);
     setSearchResult(res);
     setOpen(true);
+    setSpinner(true);
   };
 
   const handleChange = (e: any) => {
@@ -28,7 +30,6 @@ function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
   };
   const handleClick = (player: Player) => {
     setTeam([...team, player]);
-    console.log(team);
   };
   return (
     <>
@@ -40,7 +41,13 @@ function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
         }}
       >
         <div className="ui icon input loading">
-          <input type="text" placeholder="Search..." onChange={handleChange} />
+          <input
+            type="text"
+            value={name}
+            placeholder="Search..."
+            onChange={handleChange}
+          />
+          {spinner && open ? <Icon loading name="spinner" /> : ''}
         </div>
       </form>
       {searchResult === undefined ? (
