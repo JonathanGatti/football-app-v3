@@ -21,8 +21,12 @@ function App() {
       <Switch>
         <Route exact path="/" render={() => <Home />} />
         <Route exact path="/team/create" render={() => <CreateTeam />} />
-        <Route exact path="/team/show" render={() => <ShowTeam />} />
-        <Route exact path="/teams/list" render={() => <TeamsList />} />
+        <Route
+          exact
+          path="/team/:id"
+          render={(routeProps) => <ShowTeam {...routeProps} />}
+        />
+        <Route exact path="/list" render={() => <TeamsList />} />
       </Switch>
     </AppContainer>
   );

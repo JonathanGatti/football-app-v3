@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchTeam } from '../actions';
 
-function ShowTeam() {
-  return <div>ShowTeam</div>;
+function ShowTeam({ match, fetchTeam, team, auth }: any) {
+  useEffect(() => {
+    fetchTeam(match.params.id);
+  }, [auth.isSignedIn]);
+
+  const renderTeam = () => {
+    if (!team) {
+      return null;
+    } else {
+      return <div>{team.teamName}</div>;
+    }
+  };
+  return <div>{renderTeam()}</div>;
 }
 
-export default ShowTeam;
+const mapStateToProps = (state: any, ownProps: any) => {
+  return { team: state.teams![ownProps.match.params.id], auth: state.auth };
+};
+export default connect(mapStateToProps, { fetchTeam })(ShowTeam);
