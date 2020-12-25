@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { getPlayer } from '../api/externalApi';
-import { getPlayers, postPlayer } from '../api/localApi';
+import { postPlayer } from '../api/localApi';
 import { Player } from '../interfaces';
 import SearchResultList from './SearchResultList';
 import { getPlayersAndFilterByName } from '../utils/getPlayersAndFilterByName';
