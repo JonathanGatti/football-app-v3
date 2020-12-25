@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getPlayer } from '../api/externalApi';
+import { postPlayer } from '../api/localApi';
 import { Player } from '../interfaces';
 import SearchResultList from './SearchResultList';
 import { Header, Modal, List, Icon, Input } from 'semantic-ui-react';
@@ -27,6 +28,7 @@ function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
     setName('');
   };
   const handleClick = (player: Player) => {
+    postPlayer(player);
     setTeam([...team, player]);
   };
   return (

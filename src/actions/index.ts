@@ -15,7 +15,7 @@ export const signOut = () => {
 }
 export const fetchTeams = () => {
   return async (dispatch: any) => {
-    const res = await axios.get('http://127.0.0.1:3002/api/teams');
+    const res = await axios.get('http://127.0.0.1:8080/api/teams');
 
     dispatch({ type:FETCH_TEAMS, payload: res.data });
   }
@@ -23,7 +23,7 @@ export const fetchTeams = () => {
 
 export const fetchTeam = (id: number) => {
   return async (dispatch: any) => {
-    const res = await axios.get(`http://127.0.0.1:3002/api/teams/${id}`);
+    const res = await axios.get(`http://127.0.0.1:8080/api/teams/${id}`);
 
     dispatch({ type: FETCH_TEAM, payload: res.data });
   }
@@ -32,7 +32,7 @@ export const fetchTeam = (id: number) => {
 
 export const createTeam = (team: Team ) => {
   return async (dispatch: any) => {
-    const res = await axios.post('http://127.0.0.1:3002/api/teams/', team);
+    const res = await axios.post('http://127.0.0.1:8080/api/teams/', team);
 
     dispatch({ type: CREATE_TEAM, payload: res.data })
   }
@@ -40,7 +40,7 @@ export const createTeam = (team: Team ) => {
 
 export const deleteTeam = (id: string) => {
   return async (dispatch: any) => {
-    axios.delete(`http://127.0.0.1:3002/api/teams/${id}`)
+    axios.delete(`http://127.0.0.1:8080/api/teams/${id}`)
 
     dispatch({ type: DELETE_TEAM, payload: id })
   }
