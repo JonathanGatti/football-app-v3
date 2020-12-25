@@ -31,8 +31,7 @@ export const fetchTeam = (id: number) => {
 
 
 export const createTeam = (team: Team ) => {
-  return async (dispatch: any, getState: any) => {
-    const { userId } = getState().auth;
+  return async (dispatch: any) => {
     const res = await axios.post('http://127.0.0.1:3002/api/teams/', team);
 
     dispatch({ type: CREATE_TEAM, payload: res.data })

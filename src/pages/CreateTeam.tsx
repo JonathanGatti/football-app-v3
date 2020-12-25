@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { postData } from '../api/localApi';
 import pitch from '../assets/imgs/3dsection.png';
 import SearchPlayerForm from '../components/SearchPlayerForm';
 import { classic, defensive, offensive } from '../utils/teamModules';
@@ -41,7 +40,7 @@ const PlayerDiv = styled.div`
   justify-content: center;
 `;
 
-function CreateTeam({ createTeam }: any) {
+function CreateTeam({ createTeam, auth }: any) {
   const [module, setModule] = useState<string[]>(defensive);
   const [teamName, setTeamName] = useState('');
   const [team, setTeam] = useState<Player[]>([]);
@@ -63,6 +62,7 @@ function CreateTeam({ createTeam }: any) {
       teamName: teamName,
       teamPlayers: team,
       teamModule: module,
+      userId: auth.userId,
     };
     createTeam(data);
   };
@@ -117,4 +117,15 @@ function CreateTeam({ createTeam }: any) {
   );
 }
 
-export default connect(null, { createTeam })(CreateTeam);
+interface StateToProps {
+  auth: {
+    isSigendIn: boolean;
+    userId: string;
+  };
+}
+
+const mapStateToProps = (state: StateToProps) => {
+  return { auth: state.auth };
+};
+
+export default connect(mapStateToProps, { createTeam })(CreateTeam);
