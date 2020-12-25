@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { postData } from '../api/localApi';
 import pitch from '../assets/imgs/3dsection.png';
 import SearchPlayerForm from '../components/SearchPlayerForm';
 import { classic, defensive, offensive } from '../utils/teamModules';
 import PlayerCard from '../components/PlayerCard';
 import { Player } from '../interfaces';
-import { Label, Form } from 'semantic-ui-react';
+import { Label, Form, Button } from 'semantic-ui-react';
 
 const Header = styled.div`
   display: flex;
@@ -55,6 +56,14 @@ function CreateTeam() {
     setTeamName(e.target.value);
   };
 
+  const handleClick = () => {
+    const data = {
+      teamName: teamName,
+      teamPlayers: team,
+      teamModule: module,
+    };
+    postData(data);
+  };
   return (
     <div style={{ backgroundColor: '#17135d' }}>
       <h1>Create Your Team</h1>
@@ -99,6 +108,9 @@ function CreateTeam() {
           ))}
         </div>
       </Grid>
+      <Button type="submit" onClick={handleClick}>
+        Submit
+      </Button>
     </div>
   );
 }
