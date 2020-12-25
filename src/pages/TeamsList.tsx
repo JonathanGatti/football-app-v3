@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchTeams } from '../actions';
 import { Link } from 'react-router-dom';
+import { Grid } from 'semantic-ui-react';
 
 function TeamsList({ teams, auth, fetchTeams }: any) {
   useEffect(() => {
@@ -12,10 +13,13 @@ function TeamsList({ teams, auth, fetchTeams }: any) {
     if (!teams.teams) {
       return null;
     } else {
-      console.log(teams.teams[0].teamName);
-      return teams.teams.map((team: any) => (
-        <Link to={`/team/${team._id}`}>{team.teamName}</Link>
-      ));
+      return (
+        <div>
+          {teams.teams.map((team: any) => (
+            <Link to={`/team/${team._id}`}>{team.teamName}</Link>
+          ))}
+        </div>
+      );
     }
   };
 

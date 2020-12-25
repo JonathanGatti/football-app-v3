@@ -7,6 +7,8 @@ import { classic, defensive, offensive } from '../utils/teamModules';
 import PlayerCard from '../components/PlayerCard';
 import { Player } from '../interfaces';
 import { Label, Form, Button } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { createTeam } from '../actions';
 
 const Header = styled.div`
   display: flex;
@@ -39,7 +41,7 @@ const PlayerDiv = styled.div`
   justify-content: center;
 `;
 
-function CreateTeam() {
+function CreateTeam({ createTeam }: any) {
   const [module, setModule] = useState<string[]>(defensive);
   const [teamName, setTeamName] = useState('');
   const [team, setTeam] = useState<Player[]>([]);
@@ -62,7 +64,7 @@ function CreateTeam() {
       teamPlayers: team,
       teamModule: module,
     };
-    postData(data);
+    createTeam(data);
   };
   return (
     <div style={{ backgroundColor: '#17135d' }}>
@@ -115,4 +117,4 @@ function CreateTeam() {
   );
 }
 
-export default CreateTeam;
+export default connect(null, { createTeam })(CreateTeam);

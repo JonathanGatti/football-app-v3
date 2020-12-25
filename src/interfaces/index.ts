@@ -13,3 +13,10 @@ export interface Player {
   position: string;
   weight: string;
 }
+
+
+export interface Team {
+  teamName: string;
+  teamPlayers: Player[];
+  teamModule: string[];
+}

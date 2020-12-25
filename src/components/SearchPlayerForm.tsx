@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { getPlayer } from '../api/externalApi';
 import { Player } from '../interfaces';
 import SearchResultList from './SearchResultList';
-import { Header, Modal, List, Icon } from 'semantic-ui-react';
+import { Header, Modal, List, Icon, Input } from 'semantic-ui-react';
 
 interface SearchPlayerFormProps {
   team: Player[];
@@ -38,14 +38,12 @@ function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
           reset();
         }}
       >
-        <div className="ui icon input loading">
-          <input
-            type="text"
-            value={name}
-            placeholder="Search..."
-            onChange={handleChange}
-          />
-        </div>
+        <Input
+          type="text"
+          value={name}
+          placeholder="Search..."
+          onChange={handleChange}
+        />
       </form>
       <Modal
         basic
