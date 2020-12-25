@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react';
-import { getData } from '../api/localApi';
+import { connect } from 'react-redux';
+import { fetchTeams } from '../actions';
 
-function TeamsList() {
+function TeamsList({ fetchTeams }: any) {
   useEffect(() => {
-    const getDataInEffect = async () => {
-      const res = await getData();
-      console.log(res);
-    };
-    getDataInEffect();
-  });
+    fetchTeams();
+  }, []);
 
   return <div>Teams List</div>;
 }
 
-export default TeamsList;
+export default connect(null, { fetchTeams })(TeamsList);

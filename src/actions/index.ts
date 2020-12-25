@@ -1,4 +1,5 @@
 import {SIGN_IN, SIGN_OUT} from './types';
+import axios from 'axios';
 
 export const signIn = (userId: string | number) => {
   return {
@@ -11,17 +12,18 @@ export const signOut = () => {
     type: SIGN_OUT
   }
 }
+export const fetchTeams = () => {
+  return async (dispatch: any) => {
+    const res = await axios.get('http://127.0.0.1:3002/api/teams');
 
-export const createPlayer = ( player: any) => {
-  return {
-    action: 'CREATE_PLAYER',
-    payload: player
+    dispatch({ type: 'FETCH_TEAMS', payload: res.data });
   }
 }
 
-export const deletePlayer = (id: string) => {
-  return {
-    action: 'DELETE_PLAYER',
-    payload: id
+export const fetchTeam = (id: number) => {
+  return async (dispatch: any) => {
+    const res = await axios.get(`http://127.0.0.1:3002/api/teams/${id}`);
+
+    dispatch({ type: 'FETCH_TEAM', payload: res.data });
   }
 }
