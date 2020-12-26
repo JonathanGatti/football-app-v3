@@ -30,19 +30,21 @@ export const postData = (data: Data) => {
 }
 
 export const postPlayer = async (data: Player) => {
-  const res = await getPlayerById(data._id)
-  const id = res.data._id
-  if(data._id !== id){
-    axios.post('http://127.0.0.1:8080/api/players',
-    data,
-     {
-      headers: {
-        'Content-Type': 'application/json',
-        }
-    })
-    .catch(e => {
-      console.log(e)
-    })
+  const res = await getPlayers()
+  const player = res.filter((player: Player) => (
+    player.player_id === data.player_id
+  ));
+  if(player[0] === undefined){
+      axios.post('http://127.0.0.1:8080/api/players',
+      data,
+       {
+        headers: {
+          'Content-Type': 'application/json',
+          }
+      })
+      .catch(e => {
+        console.log(e)
+      })
   }
   return null;
 }
