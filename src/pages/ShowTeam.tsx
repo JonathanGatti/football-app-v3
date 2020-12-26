@@ -53,6 +53,7 @@ function ShowTeam({ match, fetchTeam, team, auth }: ShowTeam) {
           <TeamStats>
             <h2>{team.teamName}</h2>
             <h5>Rating: {team.rating}</h5>
+            <img src={team.logo} />
           </TeamStats>
           <Grid>
             <div className="ui centered grid">
