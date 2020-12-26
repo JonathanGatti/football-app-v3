@@ -1,4 +1,5 @@
 export interface Player {
+  _id: number;
   age: number;
   birth_country: string;
   birth_date: string;
