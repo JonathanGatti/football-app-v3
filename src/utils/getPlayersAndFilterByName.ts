@@ -10,7 +10,7 @@ export const getPlayersAndFilterByName = async (name: string) => {
          return player.player_name.toLowerCase().includes(name);
       }
     });
-    if(players.length <= 0){
+    if(players.length <= 2){
       return players = await getPlayer(name)
     }
   return players;
