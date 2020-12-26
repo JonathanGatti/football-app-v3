@@ -7,10 +7,17 @@ import { Header, Modal, List, Icon, Input } from 'semantic-ui-react';
 
 interface SearchPlayerFormProps {
   team: Player[];
+  rating: number;
   setTeam: Function;
+  setRating: Function;
 }
 
-function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
+function SearchPlayerForm({
+  team,
+  setTeam,
+  setRating,
+  rating,
+}: SearchPlayerFormProps) {
   const [name, setName] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [open, setOpen] = useState(false);
@@ -31,9 +38,11 @@ function SearchPlayerForm({ team, setTeam }: SearchPlayerFormProps) {
   const reset = () => {
     setName('');
   };
-  const handleClick = (player: Player) => {
-    postPlayer(player);
+  const handleClick = async (player: Player) => {
+    let newPlayer = await postPlayer(player);
+    console.log(newPlayer);
     setTeam([...team, player]);
+    setRating(rating + player.rating);
   };
   return (
     <>

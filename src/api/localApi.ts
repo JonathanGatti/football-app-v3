@@ -31,13 +31,15 @@ export const postData = (data: Data) => {
 }
 
 export const postPlayer = async (data: Player) => {
+  let newPlayer;
   const res = await getPlayers()
   const player = res.filter((player: Player) => (
     player.player_id === data.player_id
   ));
-  if(player[0] === undefined){
+  newPlayer = player[0];
+  if(newPlayer === undefined){
     const playerRating = await getPlayerRatings(data.player_id)
-    const newPlayer = {...data, rating: playerRating};
+    newPlayer = {...data, rating: playerRating};
       axios.post('http://127.0.0.1:8080/api/players',
       newPlayer,
        {
@@ -49,7 +51,7 @@ export const postPlayer = async (data: Player) => {
         console.log(e)
       })
   }
-  return null;
+  return newPlayer;
 }
 
 export const getPlayers = async () => {

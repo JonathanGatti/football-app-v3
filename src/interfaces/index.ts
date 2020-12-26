@@ -13,6 +13,7 @@ export interface Player {
   player_name: string;
   position: string;
   weight: string;
+  rating: number;
 }
 
 

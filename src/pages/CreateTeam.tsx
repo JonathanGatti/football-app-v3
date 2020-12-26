@@ -12,6 +12,7 @@ import { createTeam } from '../actions';
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  background-color: #17135d;
 `;
 
 const Header = styled.div`
@@ -51,6 +52,8 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   const [module, setModule] = useState<string[]>(defensive);
   const [teamName, setTeamName] = useState('');
   const [team, setTeam] = useState<Player[]>([]);
+  const [logo, setLogo] = useState('');
+  const [rating, setRating] = useState(0);
 
   const handleSubmit = () => {
     console.log(teamName);
@@ -62,6 +65,10 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   };
   const handleNameChange = (e: any) => {
     setTeamName(e.target.value);
+  };
+
+  const handleLogoChange = (e: any) => {
+    setLogo(e.target.value);
   };
 
   const handleClick = () => {
@@ -76,18 +83,26 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
     createTeam(data);
   };
   return (
-    <Container style={{ backgroundColor: '#17135d' }}>
+    <Container>
       <Header>
+        <p>{teamName}</p>
+
         <Form onSubmit={handleSubmit}>
           <Form.Field>
             <Label>
               Choose a Name
               <input placeholder="Name Your team" onChange={handleNameChange} />
             </Label>
+            <Label>
+              Choose a Logo
+              <input
+                placeholder="Insert an Image url"
+                onChange={handleLogoChange}
+              />
+            </Label>
           </Form.Field>
         </Form>
 
-        <p>{teamName}</p>
         <Label>
           Select Your Module
           <select
@@ -100,6 +115,8 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
             <option value={offensive}>offensive 4-3-3</option>
           </select>
         </Label>
+        <img src={logo} />
+        <span>{rating}</span>
         <Button type="submit" onClick={handleClick}>
           Submit
         </Button>
@@ -110,7 +127,12 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
             <div className={`${size} wide column`}>
               {!team[i] ? (
                 <PlayerDiv key={i}>
-                  <SearchPlayerForm team={team} setTeam={setTeam} />
+                  <SearchPlayerForm
+                    team={team}
+                    rating={rating}
+                    setRating={setRating}
+                    setTeam={setTeam}
+                  />
                 </PlayerDiv>
               ) : (
                 <PlayerDiv key={i}>
