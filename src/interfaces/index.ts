@@ -24,4 +24,5 @@ export interface Team {
   userId: string;
   logo: string;
   rating: number;
+  _id: string;
 }

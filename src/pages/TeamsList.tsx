@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Team } from '../interfaces';
 import { fetchTeams, deleteTeam } from '../actions';
-import { Button } from 'semantic-ui-react';
+import { Button, Card, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 interface TeamsList {
@@ -12,6 +13,11 @@ interface TeamsList {
   deleteTeam: Function;
 }
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 5em;
+`;
 function TeamsList({ teams, auth, fetchTeams, deleteTeam }: TeamsList) {
   useEffect(() => {
     fetchTeams();
@@ -25,14 +31,35 @@ function TeamsList({ teams, auth, fetchTeams, deleteTeam }: TeamsList) {
       return null;
     } else {
       return (
-        <div>
-          {teams.teams.map((team: any) => (
-            <>
-              <Link to={`/team/${team._id}`}>{team.teamName}</Link>
-              <Button onClick={() => handleClick(team._id)}>DELETE</Button>
-            </>
-          ))}
-        </div>
+        <Container>
+          <Card.Group>
+            {teams.teams.map((team: Team) => (
+              <Card>
+                <Card.Content>
+                  <Image floated="right" size="mini" src={team.logo} />
+                  <Card.Header>{team.teamName}</Card.Header>
+                  <Card.Meta>Rating : {team.rating}</Card.Meta>
+                </Card.Content>
+                <Card.Content extra>
+                  <div className="ui two buttons">
+                    <Link to={`/team/${team._id}`}>
+                      <Button basic color="green">
+                        Go To Team
+                      </Button>
+                    </Link>
+                    <Button
+                      basic
+                      color="red"
+                      onClick={() => handleClick(team._id)}
+                    >
+                      DELETE
+                    </Button>
+                  </div>
+                </Card.Content>
+              </Card>
+            ))}
+          </Card.Group>
+        </Container>
       );
     }
   };

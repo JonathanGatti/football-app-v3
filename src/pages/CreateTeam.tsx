@@ -12,14 +12,15 @@ import { createTeam } from '../actions';
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  background-color: #17135d;
   .team-name {
     width: 100%;
   }
 `;
 
 const Header = styled.div`
-  background: lightblue;
+  background-color: #17135d;
+  color: white;
+  margin-right: 1rem;
   display: flex;
   flex-direction: column;
   width: 25%;
@@ -82,7 +83,7 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
 
   const handleClick = () => {
     const data = {
-      teamName: teamName,
+      teamName: teamName.toUpperCase(),
       teamPlayers: team,
       teamModule: module,
       userId: auth.userId,
