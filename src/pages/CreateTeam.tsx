@@ -141,7 +141,7 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
         <div className="ui centered grid">
           {module.map((size, i) => (
             <div className={`${size} wide column`}>
-              {!team[i]._id ? (
+              {team[i]._id === 0 ? (
                 <PlayerDiv key={i}>
                   <SearchPlayerForm
                     team={team}
