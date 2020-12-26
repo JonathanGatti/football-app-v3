@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Player } from '../interfaces';
+import PlayerInfo from './PlayerInfo';
 import background from '../assets/imgs/player_card_background.png';
 
 const PlayerCardDiv = styled.div`
@@ -21,13 +22,24 @@ interface PlayerProps {
 }
 
 function PlayerCard({ player }: PlayerProps) {
+  const [open, setOpen] = useState(false);
+
+  const handleMouseEnter = () => {
+    setOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setOpen(false);
+  };
   return (
-    <>
-      <PlayerCardDiv>
-        <h5>{player.player_name}</h5>
-        <p>{player.position}</p>
-      </PlayerCardDiv>
-    </>
+    <PlayerCardDiv
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <h5>{player.player_name}</h5>
+      <p>{player.position}</p>
+      {open ? <PlayerInfo player={player} /> : null}
+    </PlayerCardDiv>
   );
 }
 
