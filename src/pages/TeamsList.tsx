@@ -18,6 +18,7 @@ const Container = styled.div`
   justify-content: center;
   margin-top: 5em;
 `;
+
 function TeamsList({ teams, auth, fetchTeams, deleteTeam }: TeamsList) {
   useEffect(() => {
     fetchTeams();

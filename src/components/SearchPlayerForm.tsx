@@ -41,7 +41,7 @@ function SearchPlayerForm({
   const handleClick = async (player: Player) => {
     let newPlayer = await postPlayer(player);
     setTeam([...team, newPlayer]);
-    setRating(rating + newPlayer.rating);
+    setRating(Math.floor(rating + newPlayer.rating));
   };
   return (
     <>
