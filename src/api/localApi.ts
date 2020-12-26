@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {getPlayerRatings} from './externalApi';
 import {Player} from '../interfaces';
 
 interface Data {
@@ -35,8 +36,10 @@ export const postPlayer = async (data: Player) => {
     player.player_id === data.player_id
   ));
   if(player[0] === undefined){
+    const playerRating = await getPlayerRatings(data.player_id)
+    const newPlayer = {...data, rating: playerRating};
       axios.post('http://127.0.0.1:8080/api/players',
-      data,
+      newPlayer,
        {
         headers: {
           'Content-Type': 'application/json',
@@ -65,4 +68,11 @@ export const getPlayerById = async (id: number) => {
 }
 export const deleteTeam = (id: string) => {
   axios.delete(`http://127.0.0.1:8080/api/teams/${id}`)
+}
+
+const deletePlayers = async () => {
+  const res = await getPlayers();
+  res.map((player: Player) => (
+    axios.delete(`http://127.0.0.1:8080/api/players/${player._id}`)
+  ))
 }
