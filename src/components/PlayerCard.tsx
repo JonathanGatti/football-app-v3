@@ -1,20 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Player } from '../interfaces';
+import background from '../assets/imgs/player_card_background.png';
 
 const PlayerCardDiv = styled.div`
-  width: 120px;
-  height: 120px;
-  background-color: gold;
-  clip-path: polygon(
-    50% 1%,
-    100% 16%,
-    93% 74%,
-    56% 100%,
-    44% 100%,
-    5% 70%,
-    0 15%
-  );
+  width: 150px;
+  height: 150px;
+  background-image: url(${background});
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,10 +22,12 @@ interface PlayerProps {
 
 function PlayerCard({ player }: PlayerProps) {
   return (
-    <PlayerCardDiv>
-      <h5>{player.player_name}</h5>
-      <p>{player.position}</p>
-    </PlayerCardDiv>
+    <>
+      <PlayerCardDiv>
+        <h5>{player.player_name}</h5>
+        <p>{player.position}</p>
+      </PlayerCardDiv>
+    </>
   );
 }
 

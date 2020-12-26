@@ -8,7 +8,7 @@ import { Team } from '../interfaces';
 
 const Grid = styled.div`
   width: 70%;
-  height: 80vh;
+  height: 90vh;
   background-image: url(${pitch});
   background-position: center;
   background-size: cover;
