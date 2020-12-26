@@ -20,4 +20,7 @@ export interface Team {
   teamName: string;
   teamPlayers: Player[];
   teamModule: string[];
+  userId: string;
+  logo: string;
+  rating: number;
 }

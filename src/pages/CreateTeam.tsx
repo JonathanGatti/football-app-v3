@@ -9,14 +9,18 @@ import { Label, Form, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { createTeam } from '../actions';
 
-const Header = styled.div`
+const Container = styled.div`
   display: flex;
+  justify-content: center;
+`;
+
+const Header = styled.div`
+  background: lightblue;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  margin-bottom: 1rem;
+  width: 25%;
+  height: 100vh;
   p {
     font-size: 18px;
     text-transform: uppercase;
@@ -24,13 +28,11 @@ const Header = styled.div`
 `;
 
 const Grid = styled.div`
-  width: 100%;
+  width: 70%;
   height: 80vh;
   background-image: url(${pitch});
   background-position: center;
   background-size: cover;
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
   justify-content: center;
 `;
@@ -68,12 +70,13 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
       teamPlayers: team,
       teamModule: module,
       userId: auth.userId,
+      logo: '',
+      rating: 0,
     };
     createTeam(data);
   };
   return (
-    <div style={{ backgroundColor: '#17135d' }}>
-      <h1>Create Your Team</h1>
+    <Container style={{ backgroundColor: '#17135d' }}>
       <Header>
         <Form onSubmit={handleSubmit}>
           <Form.Field>
@@ -97,6 +100,9 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
             <option value={offensive}>offensive 4-3-3</option>
           </select>
         </Label>
+        <Button type="submit" onClick={handleClick}>
+          Submit
+        </Button>
       </Header>
       <Grid>
         <div className="ui centered grid">
@@ -115,10 +121,7 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
           ))}
         </div>
       </Grid>
-      <Button type="submit" onClick={handleClick}>
-        Submit
-      </Button>
-    </div>
+    </Container>
   );
 }
 
