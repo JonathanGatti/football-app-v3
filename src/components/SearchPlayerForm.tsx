@@ -44,7 +44,9 @@ function SearchPlayerForm({
     let newPlayer = await postPlayer(player);
     team[i] = newPlayer;
     setTeam([...team]);
-    setRating(Math.floor(rating + parseInt(newPlayer.rating)));
+    if (player.rating !== null) {
+      setRating(Math.floor(rating + parseInt(newPlayer.rating)));
+    }
   };
   return (
     <>
