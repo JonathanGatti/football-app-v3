@@ -7,6 +7,7 @@ import PlayerCard from '../components/PlayerCard';
 import { Player } from '../interfaces';
 import { Label, Form, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { defaultTeam } from '../utils/defaultTeam';
 import { createTeam } from '../actions';
 
 const Container = styled.div`
@@ -64,7 +65,7 @@ interface CreateTeamProps {
 function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   const [module, setModule] = useState<string[]>(defensive);
   const [teamName, setTeamName] = useState('');
-  const [team, setTeam] = useState<Player[]>([]);
+  const [team, setTeam] = useState<Player[]>(defaultTeam);
   const [logo, setLogo] = useState('');
   const [rating, setRating] = useState(0);
 
@@ -140,13 +141,14 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
         <div className="ui centered grid">
           {module.map((size, i) => (
             <div className={`${size} wide column`}>
-              {!team[i] ? (
+              {!team[i]._id ? (
                 <PlayerDiv key={i}>
                   <SearchPlayerForm
                     team={team}
                     rating={rating}
                     setRating={setRating}
                     setTeam={setTeam}
+                    index={i}
                   />
                 </PlayerDiv>
               ) : (

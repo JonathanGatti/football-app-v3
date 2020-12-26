@@ -7,13 +7,19 @@ interface SearchResultListProps {
   player: Player;
   onClick: Function;
   onOpen: Function;
+  index: number;
 }
 
 const ListDiv = styled.div`
   display: flex;
   width: 50vw;
 `;
-function SearchResultList({ player, onClick, onOpen }: SearchResultListProps) {
+function SearchResultList({
+  player,
+  onClick,
+  onOpen,
+  index,
+}: SearchResultListProps) {
   return (
     <ListDiv>
       <List.Item
@@ -31,7 +37,7 @@ function SearchResultList({ player, onClick, onOpen }: SearchResultListProps) {
           size="small"
           onClick={() => {
             onOpen(false);
-            onClick(player);
+            onClick(player, index);
           }}
         >
           Add To The Team

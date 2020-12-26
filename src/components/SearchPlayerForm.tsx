@@ -10,6 +10,7 @@ interface SearchPlayerFormProps {
   rating: number;
   setTeam: Function;
   setRating: Function;
+  index: number;
 }
 
 function SearchPlayerForm({
@@ -17,6 +18,7 @@ function SearchPlayerForm({
   setTeam,
   setRating,
   rating,
+  index,
 }: SearchPlayerFormProps) {
   const [name, setName] = useState('');
   const [searchResult, setSearchResult] = useState([]);
@@ -38,9 +40,10 @@ function SearchPlayerForm({
   const reset = () => {
     setName('');
   };
-  const handleClick = async (player: Player) => {
+  const handleClick = async (player: Player, i: number) => {
     let newPlayer = await postPlayer(player);
-    setTeam([...team, newPlayer]);
+    team[i] = newPlayer;
+    setTeam([...team]);
     setRating(Math.floor(rating + parseInt(newPlayer.rating)));
   };
   return (
@@ -74,6 +77,7 @@ function SearchPlayerForm({
             <List>
               {searchResult.map((player: Player) => (
                 <SearchResultList
+                  index={index}
                   onClick={handleClick}
                   onOpen={setOpen}
                   player={player}
