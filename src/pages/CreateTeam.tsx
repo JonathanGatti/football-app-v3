@@ -13,18 +13,30 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   background-color: #17135d;
+  .team-name {
+    width: 100%;
+  }
 `;
 
 const Header = styled.div`
   background: lightblue;
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 25%;
-  height: 100vh;
-  p {
-    font-size: 18px;
-    text-transform: uppercase;
+  height: 60vh;
+  .submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 30px;
+    margin-top: auto;
+  }
+  .input {
+    max-width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 `;
 
@@ -55,10 +67,6 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   const [logo, setLogo] = useState('');
   const [rating, setRating] = useState(0);
 
-  const handleSubmit = () => {
-    console.log(teamName);
-  };
-
   const handleSelectChange = (e: any) => {
     const newModule = e.target.value.split(',');
     setModule(newModule);
@@ -86,15 +94,16 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   return (
     <Container>
       <Header>
-        <p>{teamName}</p>
-
-        <Form onSubmit={handleSubmit}>
+        <div className="team-name">
+          <h2>Your Team Name: {teamName}</h2>
+        </div>
+        <Form>
           <Form.Field>
-            <Label>
+            <Label className="input">
               Choose a Name
               <input placeholder="Name Your team" onChange={handleNameChange} />
             </Label>
-            <Label>
+            <Label className="input">
               Choose a Logo
               <input
                 placeholder="Insert an Image url"
@@ -104,11 +113,11 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
           </Form.Field>
         </Form>
 
-        <Label>
+        <Label className="input" l>
           Select Your Module
           <select
             value={module}
-            className="ui dropdown"
+            className="ui dropdown "
             onChange={handleSelectChange}
           >
             <option value={defensive}>defensive 5-3-2</option>
@@ -116,9 +125,13 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
             <option value={offensive}>offensive 4-3-3</option>
           </select>
         </Label>
-        <img src={logo} />
-        <span>{rating}</span>
-        <Button type="submit" onClick={handleClick}>
+        <Label className="input">
+          <p>
+            Your Team Rating: <span>{rating}</span>
+          </p>
+          <img src={logo} />
+        </Label>
+        <Button className="submit-btn" type="submit" onClick={handleClick}>
           Submit
         </Button>
       </Header>
