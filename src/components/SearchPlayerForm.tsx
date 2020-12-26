@@ -41,8 +41,8 @@ function SearchPlayerForm({
   const handleClick = async (player: Player) => {
     let newPlayer = await postPlayer(player);
     console.log(newPlayer);
-    setTeam([...team, player]);
-    setRating(rating + player.rating);
+    setTeam([...team, newPlayer]);
+    setRating(rating + newPlayer.rating);
   };
   return (
     <>

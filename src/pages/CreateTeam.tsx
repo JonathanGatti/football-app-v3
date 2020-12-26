@@ -68,6 +68,7 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   };
 
   const handleLogoChange = (e: any) => {
+    console.log(e.target.value);
     setLogo(e.target.value);
   };
 
@@ -77,8 +78,8 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
       teamPlayers: team,
       teamModule: module,
       userId: auth.userId,
-      logo: '',
-      rating: 0,
+      logo: logo,
+      rating: rating,
     };
     createTeam(data);
   };
