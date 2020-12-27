@@ -6,6 +6,7 @@ import { Icon, Button } from 'semantic-ui-react';
 import { Team } from '../interfaces';
 import TeamsList from './TeamsList';
 import { defaultTeam } from '../utils/defaultTeam';
+import TeamLayout from './TeamLayout';
 
 const Container = styled.div`
   display: flex;
@@ -46,7 +47,10 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
           <div className="list">
             <TeamsList addToFightBtn={renderAddToFightBtn} />
           </div>
-          <div className="pitch"></div>
+          <div className="pitch">
+            <TeamLayout team={team1} />
+            <TeamLayout team={team2} />
+          </div>
         </Container>
       );
     }

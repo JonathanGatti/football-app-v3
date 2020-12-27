@@ -1,30 +1,14 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import PlayerCard from '../components/PlayerCard';
-import pitch from '../assets/imgs/3dsection.png';
 import { connect } from 'react-redux';
 import { fetchTeam } from '../actions';
 import { ShowTeamProps } from '../interfaces';
-
-const Grid = styled.div`
-  width: 70%;
-  height: 90vh;
-  background-image: url(${pitch});
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-`;
+import TeamLayout from './TeamLayout';
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 2em;
-`;
-
-const PlayerDiv = styled.div`
-  display: flex;
-  justify-content: center;
 `;
 
 const TeamStats = styled.div`
@@ -56,17 +40,7 @@ function ShowTeam({ match, fetchTeam, team, auth }: ShowTeamProps) {
             <h5>Rating: {team.rating}</h5>
             <img src={team.logo} />
           </TeamStats>
-          <Grid>
-            <div className="ui centered grid">
-              {team.teamModule.map((size: string, i: number) => (
-                <div className={`${size} wide column`}>
-                  <PlayerDiv key={i}>
-                    <PlayerCard player={team.teamPlayers[i]} />
-                  </PlayerDiv>
-                </div>
-              ))}
-            </div>
-          </Grid>
+          <TeamLayout team={team} />
         </Container>
       );
     }
