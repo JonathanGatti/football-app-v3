@@ -32,12 +32,10 @@ function SearchPlayerForm({
     }
   };
 
-  const handleChange = (e: any) => {
-    setName(e.target.value);
-  };
-  const reset = () => {
-    setName('');
-  };
+  const handleChange = (e: any) => setName(e.target.value);
+
+  const reset = () => setName('');
+
   const handleClick = async (player: Player, i: number) => {
     let newPlayer = await postPlayer(player);
     team.teamPlayers[i] = newPlayer;
@@ -75,17 +73,21 @@ function SearchPlayerForm({
             <Icon loading name="spinner" />
           ) : (
             <List>
-              {searchResult.map((player: Player) => (
-                <>
-                  <SearchResultList
-                    index={index}
-                    onClick={handleClick}
-                    onOpen={setOpen}
-                    player={player}
-                  />
-                  <Divider />
-                </>
-              ))}
+              {searchResult === undefined ? (
+                <div>player not found</div>
+              ) : (
+                searchResult.map((player: Player) => (
+                  <>
+                    <SearchResultList
+                      index={index}
+                      onClick={handleClick}
+                      onOpen={setOpen}
+                      player={player}
+                    />
+                    <Divider />
+                  </>
+                ))
+              )}
             </List>
           )}
         </Modal.Content>

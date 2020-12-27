@@ -24,13 +24,9 @@ interface PlayerProps {
 function PlayerCard({ player }: PlayerProps) {
   const [open, setOpen] = useState(false);
 
-  const handleMouseEnter = () => {
-    setOpen(true);
-  };
+  const handleMouseEnter = () => setOpen(true);
 
-  const handleMouseLeave = () => {
-    setOpen(false);
-  };
+  const handleMouseLeave = () => setOpen(false);
   return (
     <PlayerCardDiv
       onMouseEnter={handleMouseEnter}

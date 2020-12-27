@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Label, Form, Button, Input } from 'semantic-ui-react';
 import { classic, defensive, offensive } from '../utils/teamModules';
@@ -86,7 +86,7 @@ function TeamForm({
           Your Team Rating: <span>{team.rating}</span>
         </p>
       </Label>
-      <img src={team.logo} />
+      <img src={team.logo} alt="logo" />
 
       <Button className="submit-btn" type="submit" onClick={onClick}>
         Submit

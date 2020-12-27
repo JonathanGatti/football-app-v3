@@ -6,6 +6,7 @@ import PlayerCard from '../components/PlayerCard';
 import { Team } from '../interfaces';
 import { connect } from 'react-redux';
 import { defaultTeam } from '../utils/defaultTeam';
+import { useForceUpdate } from '../utils/forceComponentUpdate';
 import { createTeam } from '../actions';
 import TeamForm from '../components/TeamForm';
 
@@ -37,8 +38,6 @@ interface CreateTeamProps {
   auth: { userId: string; isSigendIn: boolean };
 }
 
-const useForceUpdate = () => useState()[1];
-
 function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   const forceUpdate = useForceUpdate();
   const [team, setTeam] = useState<Team>(defaultTeam);
@@ -58,9 +57,8 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
     forceUpdate(e);
   };
 
-  const setRating = (newRating: number) => {
-    team.rating = newRating;
-  };
+  const setRating = (newRating: number) => (team.rating = newRating);
+
   const handleClick = () => {
     const data = {
       teamName: team.teamName.toUpperCase(),
