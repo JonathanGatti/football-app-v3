@@ -8,19 +8,19 @@ const Container = styled.div`
   background-color: #17135d;
   color: white;
   margin-right: 1rem;
+  margin-top: 2em;
   display: flex;
   flex-direction: column;
   width: 25%;
-  height: 65vh;
+  height: 70vh;
   padding-top: 2em;
   padding-bottom: 1em;
+  padding-left: 0.4em;
   border-radius: 15px;
-  margin-top: 2em;
   .submit-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 0.4em;
     width: 100px;
     height: 30px;
     margin-top: auto;
@@ -28,17 +28,14 @@ const Container = styled.div`
   .label {
     max-width: 90%;
     margin-top: 0.6em;
-    margin-left: 0.4em;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
   img {
-    margin-top: 2em;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 50%;
-    max-height: 50%;
+    margin: auto;
+    max-width: 40%;
+    max-height: 40%;
   }
 `;
 
@@ -63,7 +60,7 @@ function TeamForm({
         <h3>Your Team Name: {team.teamName}</h3>
       </div>
       <Form>
-        <Label className="label" style={{ marginLeft: '0.4em' }}>
+        <Label className="label">
           Choose a Name
           <Input placeholder="Name Your team" onChange={onNameChange} />
         </Label>
