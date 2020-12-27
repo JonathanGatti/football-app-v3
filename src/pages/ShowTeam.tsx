@@ -18,6 +18,7 @@ const Grid = styled.div`
 
 const Container = styled.div`
   display: flex;
+  justify-content: center;
   margin-top: 2em;
 `;
 
@@ -27,8 +28,16 @@ const PlayerDiv = styled.div`
 `;
 
 const TeamStats = styled.div`
-  width: 30%;
-  height: 60%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2em;
+  width: 25%;
+  height: 70vh;
+  border: 2px solid black;
+  border-radius: 20px;
 `;
 
 interface ShowTeam {
