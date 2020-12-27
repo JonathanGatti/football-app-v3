@@ -3,7 +3,7 @@ import { postPlayer } from '../api/localApi';
 import { Team, Player } from '../interfaces';
 import SearchResultList from './SearchResultList';
 import { getPlayersAndFilterByName } from '../utils/getPlayersAndFilterByName';
-import { Header, Modal, List, Icon, Input } from 'semantic-ui-react';
+import { Header, Modal, List, Icon, Input, Divider } from 'semantic-ui-react';
 
 interface SearchPlayerFormProps {
   team: Team;
@@ -76,12 +76,15 @@ function SearchPlayerForm({
           ) : (
             <List>
               {searchResult.map((player: Player) => (
-                <SearchResultList
-                  index={index}
-                  onClick={handleClick}
-                  onOpen={setOpen}
-                  player={player}
-                />
+                <>
+                  <SearchResultList
+                    index={index}
+                    onClick={handleClick}
+                    onOpen={setOpen}
+                    player={player}
+                  />
+                  <Divider />
+                </>
               ))}
             </List>
           )}
