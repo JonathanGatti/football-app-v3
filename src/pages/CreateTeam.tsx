@@ -5,40 +5,16 @@ import SearchPlayerForm from '../components/SearchPlayerForm';
 import { classic, defensive, offensive } from '../utils/teamModules';
 import PlayerCard from '../components/PlayerCard';
 import { Player } from '../interfaces';
-import { Label, Form, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { defaultTeam } from '../utils/defaultTeam';
 import { createTeam } from '../actions';
+import TeamForm from '../components/TeamForm';
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   .team-name {
     width: 100%;
-  }
-`;
-
-const Header = styled.div`
-  background-color: #17135d;
-  color: white;
-  margin-right: 1rem;
-  display: flex;
-  flex-direction: column;
-  width: 25%;
-  height: 60vh;
-  .submit-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    height: 30px;
-    margin-top: auto;
-  }
-  .input {
-    max-width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 `;
 
@@ -95,48 +71,16 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   };
   return (
     <Container>
-      <Header>
-        <div className="team-name">
-          <h2>Your Team Name: {teamName}</h2>
-        </div>
-        <Form>
-          <Form.Field>
-            <Label className="input">
-              Choose a Name
-              <input placeholder="Name Your team" onChange={handleNameChange} />
-            </Label>
-            <Label className="input">
-              Choose a Logo
-              <input
-                placeholder="Insert an Image url"
-                onChange={handleLogoChange}
-              />
-            </Label>
-          </Form.Field>
-        </Form>
-
-        <Label className="input" l>
-          Select Your Module
-          <select
-            value={module}
-            className="ui dropdown "
-            onChange={handleSelectChange}
-          >
-            <option value={defensive}>defensive 5-3-2</option>
-            <option value={classic}>classic 4-4-2</option>
-            <option value={offensive}>offensive 4-3-3</option>
-          </select>
-        </Label>
-        <Label className="input">
-          <p>
-            Your Team Rating: <span>{rating}</span>
-          </p>
-          <img src={logo} />
-        </Label>
-        <Button className="submit-btn" type="submit" onClick={handleClick}>
-          Submit
-        </Button>
-      </Header>
+      <TeamForm
+        onSelectChange={handleSelectChange}
+        onNameChange={handleNameChange}
+        onLogoChange={handleLogoChange}
+        onClick={handleClick}
+        teamName={teamName}
+        logo={logo}
+        rating={rating}
+        module={module}
+      />
       <Grid>
         <div className="ui centered grid">
           {module.map((size, i) => (
