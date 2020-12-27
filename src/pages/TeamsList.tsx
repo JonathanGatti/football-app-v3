@@ -16,6 +16,9 @@ interface TeamsList {
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
   margin-top: 5em;
 `;
 
@@ -26,6 +29,7 @@ function TeamsList({ teams, auth, fetchTeams, deleteTeam }: TeamsList) {
 
   const handleClick = (id: string) => {
     deleteTeam(id);
+    window.location.reload();
   };
   const renderTeams = () => {
     if (!teams.teams) {
