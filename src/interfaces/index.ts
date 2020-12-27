@@ -76,4 +76,5 @@ export interface TeamsListProps {
   auth: { isSignedIn: boolean; userId: string };
   fetchTeams: Function;
   deleteTeam: Function;
+  addToFightBtn?: any;
 }

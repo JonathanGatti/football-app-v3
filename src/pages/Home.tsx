@@ -59,7 +59,7 @@ function Home() {
         <Link to="/team/create" className="btns">
           Create Your Team
         </Link>
-        <Link to="/" className="btns">
+        <Link to="/fight" className="btns">
           Fight Two Teams
         </Link>
         <Link to="/list" className="btns">

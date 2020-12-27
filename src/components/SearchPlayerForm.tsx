@@ -22,7 +22,7 @@ function SearchPlayerForm({
       let res = await getPlayersAndFilterByName(name);
       setSearchResult(res);
     } catch (e) {
-      throw new Error(e);
+      console.log(e);
     }
   };
 
@@ -63,12 +63,12 @@ function SearchPlayerForm({
       >
         <Header icon>List of Players</Header>
         <Modal.Content>
-          {searchResult.length === 0 ? (
-            <Icon loading name="spinner" />
+          {searchResult === undefined ? (
+            <div>player not found</div>
           ) : (
             <List>
-              {searchResult === undefined ? (
-                <div>player not found</div>
+              {searchResult.length === 0 ? (
+                <Icon loading name="spinner" />
               ) : (
                 searchResult.map((player: Player) => (
                   <>
