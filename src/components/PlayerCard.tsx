@@ -5,10 +5,10 @@ import { PlayerProps } from '../interfaces';
 import background from '../assets/imgs/player_card_background.png';
 
 const PlayerCardDiv = styled.div`
-  width: 150px;
-  height: 150px;
+  width: 80px;
+  height: 95px;
   background-image: url(${background});
-  background-size: 75%;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;

@@ -6,7 +6,7 @@ import PlayerCard from '../components/PlayerCard';
 
 const Grid = styled.div`
   width: 70%;
-  height: 90vh;
+  height: 70vh;
   background-image: url(${pitch});
   background-position: center;
   background-size: cover;
@@ -15,6 +15,7 @@ const Grid = styled.div`
 `;
 
 const PlayerDiv = styled.div`
+  flex: 0.5;
   display: flex;
   justify-content: center;
 `;

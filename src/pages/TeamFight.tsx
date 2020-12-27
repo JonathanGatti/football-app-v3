@@ -11,14 +11,18 @@ import TeamLayout from './TeamLayout';
 const Container = styled.div`
   display: flex;
   .list {
-    background-color: lightcoral;
-    width: 20%;
+    width: 25%;
     height: 100vh;
+    .reset-btn {
+      margin-left: 1em;
+    }
   }
   .pitch {
+    display: flex;
     width: 80%;
     height: 100vh;
-    background-color: lightblue;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -34,8 +38,6 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
 
   useEffect(() => {
     fetchTeams();
-    console.log('from useEffect team1' + team1.teamName);
-    console.log('from useEffect team2' + team2.teamName);
   }, [team1, team2]);
 
   const render = () => {
@@ -46,10 +48,17 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
         <Container>
           <div className="list">
             <TeamsList addToFightBtn={renderAddToFightBtn} />
+            <Button className="reset-btn" onClick={resetTeams}>
+              Reset
+            </Button>
           </div>
           <div className="pitch">
-            <TeamLayout team={team1} />
-            <TeamLayout team={team2} />
+            <div className="team">
+              <TeamLayout team={team1} />
+            </div>
+            <div className="team">
+              <TeamLayout team={team2} />
+            </div>
           </div>
         </Container>
       );
@@ -67,8 +76,6 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
     } else {
       setTeam2(team);
     }
-    console.log('from the function team1 ' + team1.teamName);
-    console.log('from the function team2 ' + team2.teamName);
   };
 
   const renderAddToFightBtn = (team: Team) => {
@@ -79,12 +86,7 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
     );
   };
 
-  return (
-    <div>
-      {render()}
-      <Button onClick={resetTeams}>Reset</Button>
-    </div>
-  );
+  return <div>{render()}</div>;
 }
 
 const mapStateToProps = (state: any) => {
