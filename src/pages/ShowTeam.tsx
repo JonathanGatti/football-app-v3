@@ -4,7 +4,7 @@ import PlayerCard from '../components/PlayerCard';
 import pitch from '../assets/imgs/3dsection.png';
 import { connect } from 'react-redux';
 import { fetchTeam } from '../actions';
-import { Team } from '../interfaces';
+import { ShowTeamProps } from '../interfaces';
 
 const Grid = styled.div`
   width: 70%;
@@ -40,14 +40,7 @@ const TeamStats = styled.div`
   border-radius: 20px;
 `;
 
-interface ShowTeam {
-  match: any;
-  fetchTeam: Function;
-  team: Team;
-  auth: { isSignedIn: boolean; userId: string };
-}
-
-function ShowTeam({ match, fetchTeam, team, auth }: ShowTeam) {
+function ShowTeam({ match, fetchTeam, team, auth }: ShowTeamProps) {
   useEffect(() => {
     fetchTeam(match.params.id);
   }, [auth.isSignedIn]);

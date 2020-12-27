@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Player } from '../interfaces';
-
+import { PlayerProps } from '../interfaces';
 import background from '../assets/imgs/player_card_background.png';
 
 const PlayerInfoDiv = styled.div`
@@ -23,9 +22,6 @@ const PlayerInfoDiv = styled.div`
     font-size: 18px;
   }
 `;
-interface PlayerProps {
-  player: Player;
-}
 
 const PlayerInfo = ({ player }: PlayerProps) => {
   return (

@@ -4,13 +4,7 @@ import { Team, Player } from '../interfaces';
 import SearchResultList from './SearchResultList';
 import { getPlayersAndFilterByName } from '../utils/getPlayersAndFilterByName';
 import { Header, Modal, List, Icon, Input, Divider } from 'semantic-ui-react';
-
-interface SearchPlayerFormProps {
-  team: Team;
-  setTeam: Function;
-  setRating: Function;
-  index: number;
-}
+import { SearchPlayerFormProps } from '../interfaces';
 
 function SearchPlayerForm({
   team,

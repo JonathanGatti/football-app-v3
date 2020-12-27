@@ -1,19 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Player } from '../interfaces';
 import { Button, Icon, List } from 'semantic-ui-react';
-
-interface SearchResultListProps {
-  player: Player;
-  onClick: Function;
-  onOpen: Function;
-  index: number;
-}
+import { SearchResultListProps } from '../interfaces';
 
 const ListDiv = styled.div`
   display: flex;
   width: 50vw;
 `;
+
 function SearchResultList({
   player,
   onClick,

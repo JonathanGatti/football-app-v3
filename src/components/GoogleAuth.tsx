@@ -2,12 +2,7 @@ import React, { useEffect } from 'react';
 import { clientId } from '../config';
 import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
-
-interface GoogleAuthProps {
-  isSignedIn: boolean | null;
-  signIn: Function;
-  signOut: Function;
-}
+import { GoogleAuthProps } from '../interfaces';
 
 function GoogleAuth({ isSignedIn, signIn, signOut }: GoogleAuthProps) {
   useEffect(() => {

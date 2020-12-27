@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Label, Form, Button, Input } from 'semantic-ui-react';
 import { classic, defensive, offensive } from '../utils/teamModules';
-import { Team } from '../interfaces';
+import { TeamFormProps } from '../interfaces';
 
 const Container = styled.div`
   background-color: #17135d;
@@ -38,14 +38,6 @@ const Container = styled.div`
     max-height: 40%;
   }
 `;
-
-interface TeamFormProps {
-  onSelectChange: (e: any) => void;
-  onNameChange: (e: any) => void;
-  onLogoChange: (e: any) => void;
-  onClick: () => void;
-  team: Team;
-}
 
 function TeamForm({
   onSelectChange,

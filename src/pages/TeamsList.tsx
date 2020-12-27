@@ -5,13 +5,7 @@ import { Team } from '../interfaces';
 import { fetchTeams, deleteTeam } from '../actions';
 import { Button, Card, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-
-interface TeamsList {
-  teams: any;
-  auth: { isSignedIn: boolean; userId: string };
-  fetchTeams: Function;
-  deleteTeam: Function;
-}
+import { TeamsListProps } from '../interfaces';
 
 const Container = styled.div`
   display: flex;
@@ -22,7 +16,7 @@ const Container = styled.div`
   margin-top: 5em;
 `;
 
-function TeamsList({ teams, auth, fetchTeams, deleteTeam }: TeamsList) {
+function TeamsList({ teams, auth, fetchTeams, deleteTeam }: TeamsListProps) {
   useEffect(() => {
     fetchTeams();
   }, [auth.isSignedIn]);

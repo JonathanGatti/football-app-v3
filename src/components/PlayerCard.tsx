@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Player } from '../interfaces';
 import PlayerInfo from './PlayerInfo';
+import { PlayerProps } from '../interfaces';
 import background from '../assets/imgs/player_card_background.png';
 
 const PlayerCardDiv = styled.div`
@@ -16,10 +16,6 @@ const PlayerCardDiv = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-interface PlayerProps {
-  player: Player;
-}
 
 function PlayerCard({ player }: PlayerProps) {
   const [open, setOpen] = useState(false);

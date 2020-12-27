@@ -26,3 +26,54 @@ export interface Team {
   rating: number;
   _id?: string | undefined;
 }
+
+export interface GoogleAuthProps {
+  isSignedIn: boolean | null;
+  signIn: Function;
+  signOut: Function;
+}
+
+export interface PlayerProps {
+  player: Player;
+}
+
+export interface SearchPlayerFormProps {
+  team: Team;
+  setTeam: Function;
+  setRating: Function;
+  index: number;
+}
+
+export interface SearchResultListProps {
+  player: Player;
+  onClick: Function;
+  onOpen: Function;
+  index: number;
+}
+
+export interface TeamFormProps {
+  onSelectChange: (e: any) => void;
+  onNameChange: (e: any) => void;
+  onLogoChange: (e: any) => void;
+  onClick: () => void;
+  team: Team;
+}
+
+export interface CreateTeamProps {
+  createTeam: (data: Team) => void;
+  auth: { userId: string; isSigendIn: boolean };
+}
+
+export interface ShowTeamProps {
+  match: any;
+  fetchTeam: Function;
+  team: Team;
+  auth: { isSignedIn: boolean; userId: string };
+}
+
+export interface TeamsListProps {
+  teams: any;
+  auth: { isSignedIn: boolean; userId: string };
+  fetchTeams: Function;
+  deleteTeam: Function;
+}

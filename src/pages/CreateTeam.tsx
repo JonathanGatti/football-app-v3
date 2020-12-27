@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { defaultTeam } from '../utils/defaultTeam';
 import { useForceUpdate } from '../utils/forceComponentUpdate';
 import { createTeam } from '../actions';
+import { CreateTeamProps } from '../interfaces';
 import TeamForm from '../components/TeamForm';
 
 const Container = styled.div`
@@ -32,11 +33,6 @@ const PlayerDiv = styled.div`
   display: flex;
   justify-content: center;
 `;
-
-interface CreateTeamProps {
-  createTeam: (data: Team) => void;
-  auth: { userId: string; isSigendIn: boolean };
-}
 
 function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   const forceUpdate = useForceUpdate();
