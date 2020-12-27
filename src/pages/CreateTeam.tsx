@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import pitch from '../assets/imgs/3dsection.png';
 import SearchPlayerForm from '../components/SearchPlayerForm';
-import { classic, defensive, offensive } from '../utils/teamModules';
 import PlayerCard from '../components/PlayerCard';
-import { Player } from '../interfaces';
+import { Team } from '../interfaces';
 import { connect } from 'react-redux';
 import { defaultTeam } from '../utils/defaultTeam';
 import { createTeam } from '../actions';
@@ -34,38 +33,42 @@ const PlayerDiv = styled.div`
 `;
 
 interface CreateTeamProps {
-  createTeam: Function;
+  createTeam: (data: Team) => void;
   auth: { userId: string; isSigendIn: boolean };
 }
 
+const useForceUpdate = () => useState()[1];
+
 function CreateTeam({ createTeam, auth }: CreateTeamProps) {
-  const [module, setModule] = useState<string[]>(defensive);
-  const [teamName, setTeamName] = useState('');
-  const [team, setTeam] = useState<Player[]>(defaultTeam);
-  const [logo, setLogo] = useState('');
-  const [rating, setRating] = useState(0);
+  const forceUpdate = useForceUpdate();
+  const [team, setTeam] = useState<Team>(defaultTeam);
 
   const handleSelectChange = (e: any) => {
     const newModule = e.target.value.split(',');
-    setModule(newModule);
+    team.teamModule = newModule;
+    forceUpdate(e);
   };
   const handleNameChange = (e: any) => {
-    setTeamName(e.target.value);
+    team.teamName = e.target.value;
+    forceUpdate(e);
   };
 
   const handleLogoChange = (e: any) => {
-    console.log(e.target.value);
-    setLogo(e.target.value);
+    team.logo = e.target.value;
+    forceUpdate(e);
   };
 
+  const setRating = (newRating: number) => {
+    team.rating = newRating;
+  };
   const handleClick = () => {
     const data = {
-      teamName: teamName.toUpperCase(),
-      teamPlayers: team,
-      teamModule: module,
+      teamName: team.teamName.toUpperCase(),
+      teamPlayers: team.teamPlayers,
+      teamModule: team.teamModule,
       userId: auth.userId,
-      logo: logo,
-      rating: rating,
+      logo: team.logo,
+      rating: team.rating,
     };
     createTeam(data);
   };
@@ -76,20 +79,16 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
         onNameChange={handleNameChange}
         onLogoChange={handleLogoChange}
         onClick={handleClick}
-        teamName={teamName}
-        logo={logo}
-        rating={rating}
-        module={module}
+        team={team}
       />
       <Grid>
         <div className="ui centered grid">
-          {module.map((size, i) => (
+          {team.teamModule.map((size, i) => (
             <div className={`${size} wide column`}>
-              {team[i]._id === 0 ? (
+              {team.teamPlayers[i]._id === 0 ? (
                 <PlayerDiv key={i}>
                   <SearchPlayerForm
                     team={team}
-                    rating={rating}
                     setRating={setRating}
                     setTeam={setTeam}
                     index={i}
@@ -97,7 +96,7 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
                 </PlayerDiv>
               ) : (
                 <PlayerDiv key={i}>
-                  <PlayerCard player={team[i]} />
+                  <PlayerCard player={team.teamPlayers[i]} />
                 </PlayerDiv>
               )}
             </div>

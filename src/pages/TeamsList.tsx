@@ -51,7 +51,7 @@ function TeamsList({ teams, auth, fetchTeams, deleteTeam }: TeamsList) {
                     <Button
                       basic
                       color="red"
-                      onClick={() => handleClick(team._id)}
+                      onClick={() => handleClick(team._id!)}
                     >
                       DELETE
                     </Button>

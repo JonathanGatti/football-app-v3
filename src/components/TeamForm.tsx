@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Label, Form, Button, Input } from 'semantic-ui-react';
 import { classic, defensive, offensive } from '../utils/teamModules';
+import { Team } from '../interfaces';
 
 const Container = styled.div`
   background-color: #17135d;
@@ -32,10 +33,7 @@ interface TeamFormProps {
   onNameChange: (e: any) => void;
   onLogoChange: (e: any) => void;
   onClick: () => void;
-  teamName: string;
-  logo: string;
-  rating: number;
-  module: string[];
+  team: Team;
 }
 
 function TeamForm({
@@ -43,15 +41,12 @@ function TeamForm({
   onNameChange,
   onLogoChange,
   onClick,
-  teamName,
-  logo,
-  rating,
-  module,
+  team,
 }: TeamFormProps) {
   return (
     <Container>
       <div className="team-name">
-        <h2>Your Team Name: {teamName}</h2>
+        <h2>Your Team Name: {team.teamName}</h2>
       </div>
       <Form>
         <Label className="input">
@@ -64,11 +59,10 @@ function TeamForm({
         </Label>
         <Form.Field />
       </Form>
-
       <Label className="input" l>
         Select Your Module
         <select
-          value={module}
+          value={team.teamModule}
           className="ui dropdown "
           onChange={onSelectChange}
         >
@@ -79,9 +73,9 @@ function TeamForm({
       </Label>
       <Label className="input">
         <p>
-          Your Team Rating: <span>{rating}</span>
+          Your Team Rating: <span>{team.rating}</span>
         </p>
-        <img src={logo} />
+        <img src={team.logo} />
       </Label>
       <Button className="submit-btn" type="submit" onClick={onClick}>
         Submit

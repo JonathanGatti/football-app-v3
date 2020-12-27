@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { postPlayer } from '../api/localApi';
-import { Player } from '../interfaces';
+import { Team, Player } from '../interfaces';
 import SearchResultList from './SearchResultList';
 import { getPlayersAndFilterByName } from '../utils/getPlayersAndFilterByName';
 import { Header, Modal, List, Icon, Input } from 'semantic-ui-react';
 
 interface SearchPlayerFormProps {
-  team: Player[];
-  rating: number;
+  team: Team;
   setTeam: Function;
   setRating: Function;
   index: number;
@@ -17,7 +16,6 @@ function SearchPlayerForm({
   team,
   setTeam,
   setRating,
-  rating,
   index,
 }: SearchPlayerFormProps) {
   const [name, setName] = useState('');
@@ -42,11 +40,11 @@ function SearchPlayerForm({
   };
   const handleClick = async (player: Player, i: number) => {
     let newPlayer = await postPlayer(player);
-    team[i] = newPlayer;
-    setTeam([...team]);
+    team.teamPlayers[i] = newPlayer;
     if (newPlayer.rating !== null) {
-      setRating(Math.floor(rating + parseInt(newPlayer.rating)));
+      setRating(Math.floor(team.rating + parseInt(newPlayer.rating)));
     }
+    setTeam({ ...team });
   };
   return (
     <>
