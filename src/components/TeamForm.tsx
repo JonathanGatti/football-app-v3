@@ -26,6 +26,13 @@ const Container = styled.div`
     align-items: center;
     justify-content: space-between;
   }
+  img {
+    margin-top: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50%;
+    max-height: 50%;
+  }
 `;
 
 interface TeamFormProps {
@@ -75,8 +82,9 @@ function TeamForm({
         <p>
           Your Team Rating: <span>{team.rating}</span>
         </p>
-        <img src={team.logo} />
       </Label>
+      <img src={team.logo} />
+
       <Button className="submit-btn" type="submit" onClick={onClick}>
         Submit
       </Button>
