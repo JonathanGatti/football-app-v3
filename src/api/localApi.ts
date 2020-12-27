@@ -6,6 +6,8 @@ interface Data {
   teamName: string;
   teamPlayers: Player[];
   teamModule: String[];
+  userId: string;
+  logo: string;
 }
 
 export const getData = async () => {

@@ -31,7 +31,7 @@ const PlayerInfo = ({ player }: PlayerProps) => {
   return (
     <PlayerInfoDiv>
       <div>
-        <p>{player.player_name}</p>
+        <h3>{player.player_name}</h3>
         <p>{player.position}</p>
         <p>Country: {player.birth_country}</p>
         <p>Rating: {player.rating}</p>

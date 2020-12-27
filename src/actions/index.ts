@@ -1,6 +1,7 @@
 import {SIGN_IN, SIGN_OUT, FETCH_TEAM, FETCH_TEAMS, CREATE_TEAM, DELETE_TEAM} from './types';
 import {Team} from '../interfaces';
 import axios from 'axios';
+import history from '../history';
 
 export const signIn = (userId: string | number) => {
   return {
@@ -35,6 +36,7 @@ export const createTeam = (team: Team ) => {
     const res = await axios.post('http://127.0.0.1:8080/api/teams/', team);
 
     dispatch({ type: CREATE_TEAM, payload: res.data })
+    history.push('/');
   }
 }
 

@@ -47,7 +47,6 @@ function ShowTeam({ match, fetchTeam, team, auth }: ShowTeam) {
     if (!team) {
       return null;
     } else {
-      console.log(team);
       return (
         <Container>
           <TeamStats>
