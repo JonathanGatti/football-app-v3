@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { PlayerProps } from '../interfaces';
+import { connect } from 'react-redux';
+import { editTeam } from '../actions';
+import { PlayerInfoProps } from '../interfaces';
 import background from '../assets/imgs/player_card_background.png';
+import { Button } from 'semantic-ui-react';
+import SearchPlayerForm from './SearchPlayerForm';
+import { defaultTeam } from '../utils/defaultTeam';
 
 const PlayerInfoDiv = styled.div`
   display: flex;
@@ -23,17 +28,40 @@ const PlayerInfoDiv = styled.div`
   }
 `;
 
-const PlayerInfo = ({ player }: PlayerProps) => {
+const PlayerInfo = ({ team, player, editTeam, index }: any) => {
+  const [open, setOpen] = useState(false);
+  const [newTeam, setNewTeam] = useState(team);
+  const [rating, setRating] = useState(team.rating);
+  const { _id } = team;
+  const handleClick = (player: any) => {
+    setOpen(true);
+    console.log(newTeam);
+  };
   return (
     <PlayerInfoDiv>
-      <div>
-        <h3>{player.player_name}</h3>
-        <p>{player.position}</p>
-        <p>Country: {player.birth_country}</p>
-        <p>Rating: {player.rating}</p>
-      </div>
+      {!open ? (
+        <div>
+          <h3>{player.player_name}</h3>
+          <p>{player.position}</p>
+          <Button onClick={handleClick}>Edit</Button>
+
+          <p>Country: {player.birth_country}</p>
+          <p>Rating: {player.rating}</p>
+        </div>
+      ) : (
+        <SearchPlayerForm
+          team={team}
+          setTeam={setNewTeam}
+          index={index}
+          setRating={setRating}
+        />
+      )}
     </PlayerInfoDiv>
   );
 };
 
-export default PlayerInfo;
+const mapStateToProps = (state: any) => {
+  return { team: state.teams, auth: state.auth };
+};
+
+export default connect(mapStateToProps, { editTeam })(PlayerInfo);

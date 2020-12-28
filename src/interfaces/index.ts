@@ -1,3 +1,5 @@
+import PlayerInfo from "../components/PlayerInfo"
+
 export interface Player {
   _id: number;
   age: number;
@@ -37,11 +39,19 @@ export interface PlayerProps {
   player: Player;
 }
 
+export interface PlayerInfoProps {
+  team?: any;
+  player: Player;
+  editTeam?: (team:Team) => void;
+
+}
+
 export interface SearchPlayerFormProps {
   team: Team;
   setTeam: Function;
   setRating: Function;
   index: number;
+  editTeam?: (id: number, player: any) => void;
 }
 
 export interface SearchResultListProps {

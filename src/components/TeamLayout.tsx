@@ -31,7 +31,7 @@ function TeamLayout({ team }: any) {
             {team.teamModule.map((size: string, i: number) => (
               <div className={`${size} wide column`}>
                 <PlayerDiv key={i}>
-                  <PlayerCard player={team.teamPlayers[i]} />
+                  <PlayerCard player={team.teamPlayers[i]} index={i} />
                 </PlayerDiv>
               </div>
             ))}

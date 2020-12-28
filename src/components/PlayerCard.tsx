@@ -17,7 +17,7 @@ const PlayerCardDiv = styled.div`
   align-items: center;
 `;
 
-function PlayerCard({ player }: PlayerProps) {
+function PlayerCard({ player, index }: any) {
   const [open, setOpen] = useState(false);
 
   const handleMouseEnter = () => setOpen(true);
@@ -30,7 +30,7 @@ function PlayerCard({ player }: PlayerProps) {
     >
       <h5>{player.player_name}</h5>
       <p>{player.position}</p>
-      {open ? <PlayerInfo player={player} /> : null}
+      {open ? <PlayerInfo player={player} index={index} /> : null}
     </PlayerCardDiv>
   );
 }

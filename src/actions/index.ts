@@ -1,5 +1,5 @@
-import {SIGN_IN, SIGN_OUT, FETCH_TEAM, FETCH_TEAMS, CREATE_TEAM, DELETE_TEAM} from './types';
-import {Team} from '../interfaces';
+import {SIGN_IN, SIGN_OUT, FETCH_TEAM, FETCH_TEAMS, CREATE_TEAM, DELETE_TEAM, EDIT_TEAM} from './types';
+import {Team, Player} from '../interfaces';
 import axios from 'axios';
 import history from '../history';
 import {url} from '../api/localApi';
@@ -38,6 +38,14 @@ export const createTeam = (team: Team ) => {
 
     dispatch({ type: CREATE_TEAM, payload: res.data })
     window.location.assign('/list')
+  }
+}
+
+export const editTeam = (team: Team, id:string) => {
+  return async (dispatch: any) => {
+    axios.put(`${url}/api/teams/${id}`)
+
+    dispatch({type: EDIT_TEAM, payload: team });
   }
 }
 
