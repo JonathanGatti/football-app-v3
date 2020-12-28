@@ -37,7 +37,7 @@ export const createTeam = (team: Team ) => {
     const res = await axios.post(`${url}/api/teams`, team);
 
     dispatch({ type: CREATE_TEAM, payload: res.data })
-    history.push('/list');
+    window.location.assign('/list')
   }
 }
 
@@ -46,5 +46,6 @@ export const deleteTeam = (id: string) => {
     axios.delete(`${url}/api/teams/${id}`)
 
     dispatch({ type: DELETE_TEAM, payload: id })
+    history.push('/');
   }
 }

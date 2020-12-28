@@ -66,7 +66,6 @@ function TeamForm({
           Choose a Name
           <Form.Input
             error={nameError}
-            required={true}
             placeholder="Name Your team"
             onChange={(e) => {
               onNameChange(e);
@@ -78,7 +77,6 @@ function TeamForm({
           Choose a Logo
           <Form.Input
             error={logoError}
-            required={true}
             placeholder="Insert an Image url"
             onChange={(e) => {
               onLogoChange(e);

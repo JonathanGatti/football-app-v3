@@ -25,11 +25,10 @@ function TeamsList({
 }: TeamsListProps) {
   useEffect(() => {
     fetchTeams();
-  }, [auth.isSignedIn]);
+  }, [teams.length]);
 
   const handleClick = (id: string) => {
     deleteTeam!(id);
-    window.location.reload();
   };
   const renderTeams = () => {
     if (!teams.teams) {
@@ -54,13 +53,15 @@ function TeamsList({
                             Go To Team
                           </Button>
                         </Link>
-                        <Button
-                          basic
-                          color="red"
-                          onClick={() => handleClick(team._id!)}
-                        >
-                          DELETE
-                        </Button>
+                        {auth.userId === team.userId ? (
+                          <Button
+                            basic
+                            color="red"
+                            onClick={(e) => handleClick(team._id!)}
+                          >
+                            DELETE
+                          </Button>
+                        ) : null}
                       </>
                     ) : (
                       addToFightBtn!(team)

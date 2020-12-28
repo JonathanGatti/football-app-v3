@@ -39,7 +39,7 @@ function ShowTeam({ match, fetchTeam, team, auth }: ShowTeamProps) {
           <TeamStats>
             <h2>{team.teamName}</h2>
             <h5>Rating: {team.rating}</h5>
-            <img src={team.logo} />
+            <img src={team.logo} alt="logo" />
           </TeamStats>
           <TeamLayout team={team} />
         </Container>

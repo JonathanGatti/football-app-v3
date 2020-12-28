@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-import { clientId } from '../config';
 import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
 import { GoogleAuthProps } from '../interfaces';
+import { CLIENT_ID } from '../config';
+
+const clientId = CLIENT_ID;
 
 function GoogleAuth({ isSignedIn, signIn, signOut }: GoogleAuthProps) {
   useEffect(() => {

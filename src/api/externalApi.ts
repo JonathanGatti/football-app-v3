@@ -1,5 +1,8 @@
 import axios from 'axios';
-import {apiKey} from '../config';
+import {API_KEY} from '../config';
+
+
+const apiKey = API_KEY;
 
 const url = 'https://api-football-v1.p.rapidapi.com/v2/players/';
 
