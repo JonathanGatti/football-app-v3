@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Label, Form, Button, Input } from 'semantic-ui-react';
 import { classic, defensive, offensive } from '../utils/teamModules';
-import { TeamFormProps } from '../interfaces';
+import { Player, TeamFormProps } from '../interfaces';
 
 const Container = styled.div`
   background-color: #17135d;
@@ -46,6 +46,16 @@ function TeamForm({
   onClick,
   team,
 }: TeamFormProps) {
+  const [nameError, setNameError] = useState(true);
+  const [logoError, setLogoError] = useState(true);
+  const [disableBtn, setDisableBtn] = useState(true);
+
+  useEffect(() => {
+    if (!nameError && !logoError) {
+      setDisableBtn(false);
+    }
+  }, [nameError, logoError]);
+
   return (
     <Container>
       <div>
@@ -54,11 +64,27 @@ function TeamForm({
       <Form>
         <Label className="label">
           Choose a Name
-          <Input placeholder="Name Your team" onChange={onNameChange} />
+          <Form.Input
+            error={nameError}
+            required={true}
+            placeholder="Name Your team"
+            onChange={(e) => {
+              onNameChange(e);
+              setNameError(false);
+            }}
+          />
         </Label>
         <Label className="label">
           Choose a Logo
-          <Input placeholder="Insert an Image url" onChange={onLogoChange} />
+          <Form.Input
+            error={logoError}
+            required={true}
+            placeholder="Insert an Image url"
+            onChange={(e) => {
+              onLogoChange(e);
+              setLogoError(false);
+            }}
+          />
         </Label>
         <Label className="label" l>
           Select Your Module
@@ -80,7 +106,12 @@ function TeamForm({
       </Label>
       <img src={team.logo} alt="logo" />
 
-      <Button className="submit-btn" type="submit" onClick={onClick}>
+      <Button
+        disabled={disableBtn}
+        className="submit-btn"
+        type="submit"
+        onClick={onClick}
+      >
         Submit
       </Button>
     </Container>

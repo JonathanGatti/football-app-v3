@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Team } from '../interfaces';
 import { fetchTeams, deleteTeam } from '../actions';
-import { Button, Card, Image } from 'semantic-ui-react';
+import { Button, Card, Image, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { TeamsListProps } from '../interfaces';
 
@@ -33,7 +33,7 @@ function TeamsList({
   };
   const renderTeams = () => {
     if (!teams.teams) {
-      return null;
+      return <Icon loading name="spinner" />;
     } else {
       return (
         <Container>
