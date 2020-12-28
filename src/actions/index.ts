@@ -2,6 +2,7 @@ import {SIGN_IN, SIGN_OUT, FETCH_TEAM, FETCH_TEAMS, CREATE_TEAM, DELETE_TEAM} fr
 import {Team} from '../interfaces';
 import axios from 'axios';
 import history from '../history';
+import {url} from '../api/localApi';
 
 export const signIn = (userId: string | number) => {
   return {
@@ -16,7 +17,7 @@ export const signOut = () => {
 }
 export const fetchTeams = () => {
   return async (dispatch: any) => {
-    const res = await axios.get('http://127.0.0.1:8080/api/teams');
+    const res = await axios.get(`${url}/api/teams`);
 
     dispatch({ type:FETCH_TEAMS, payload: res.data });
   }
@@ -24,7 +25,7 @@ export const fetchTeams = () => {
 
 export const fetchTeam = (id: number) => {
   return async (dispatch: any) => {
-    const res = await axios.get(`http://127.0.0.1:8080/api/teams/${id}`);
+    const res = await axios.get(`${url}/api/teams/${id}`);
 
     dispatch({ type: FETCH_TEAM, payload: res.data });
   }
@@ -33,7 +34,7 @@ export const fetchTeam = (id: number) => {
 
 export const createTeam = (team: Team ) => {
   return async (dispatch: any) => {
-    const res = await axios.post('http://127.0.0.1:8080/api/teams/', team);
+    const res = await axios.post(`${url}/api/teams`, team);
 
     dispatch({ type: CREATE_TEAM, payload: res.data })
     history.push('/list');
@@ -42,7 +43,7 @@ export const createTeam = (team: Team ) => {
 
 export const deleteTeam = (id: string) => {
   return async (dispatch: any) => {
-    axios.delete(`http://127.0.0.1:8080/api/teams/${id}`)
+    axios.delete(`${url}/api/teams/${id}`)
 
     dispatch({ type: DELETE_TEAM, payload: id })
   }

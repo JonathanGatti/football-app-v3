@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { fetchTeam } from '../actions';
 import { ShowTeamProps } from '../interfaces';
-import TeamLayout from './TeamLayout';
+import { Icon } from 'semantic-ui-react';
+import TeamLayout from '../components/TeamLayout';
 
 const Container = styled.div`
   display: flex;
@@ -31,7 +32,7 @@ function ShowTeam({ match, fetchTeam, team, auth }: ShowTeamProps) {
 
   const renderTeam = () => {
     if (!team) {
-      return null;
+      return <Icon loading name="spinner" />;
     } else {
       return (
         <Container>

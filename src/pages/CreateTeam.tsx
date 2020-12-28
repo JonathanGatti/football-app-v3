@@ -14,9 +14,6 @@ import TeamForm from '../components/TeamForm';
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  .team-name {
-    width: 100%;
-  }
 `;
 
 const Grid = styled.div`

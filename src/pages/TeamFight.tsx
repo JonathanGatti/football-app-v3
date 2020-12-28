@@ -6,7 +6,7 @@ import { Icon, Button } from 'semantic-ui-react';
 import { Team } from '../interfaces';
 import TeamsList from './TeamsList';
 import { defaultTeam } from '../utils/defaultTeam';
-import TeamLayout from './TeamLayout';
+import TeamLayout from '../components/TeamLayout';
 
 const Container = styled.div`
   display: flex;

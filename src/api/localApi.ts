@@ -10,9 +10,11 @@ interface Data {
   logo: string;
 }
 
+export const url = 'https://boiling-hollows-70973.herokuapp.com'
+
 export const getData = async () => {
   try {
-    const res = await axios.get('http://127.0.0.1:8080/api/teams');
+    const res = await axios.get(`${url}/api/teams`);
     return res.data;
   }
   catch(e) {
@@ -20,7 +22,7 @@ export const getData = async () => {
   }
 }
 export const postData = (data: Data) => {
-  axios.post('http://127.0.0.1:8080/api/teams',
+  axios.post(`${url}/api/teams`,
     data,
      {
       headers: {
@@ -42,7 +44,7 @@ export const postPlayer = async (data: Player) => {
   if(newPlayer === undefined){
     const playerRating = await getPlayerRatings(data.player_id)
     newPlayer = {...data, rating: playerRating};
-      axios.post('http://127.0.0.1:8080/api/players',
+      axios.post(`${url}/api/players`,
       newPlayer,
        {
         headers: {
@@ -58,7 +60,7 @@ export const postPlayer = async (data: Player) => {
 
 export const getPlayers = async () => {
   try {
-    const res = await axios.get('http://127.0.0.1:8080/api/players');
+    const res = await axios.get(`${url}/api/players`);
     return res.data;
   }
   catch(e) {
@@ -67,16 +69,16 @@ export const getPlayers = async () => {
 }
 
 export const getPlayerById = async (id: number) => {
-  const res = await axios.get(`http://127.0.0.1:8080/api/players/${id}`)
+  const res = await axios.get(`${url}/api/players/${id}`)
   return res;
 }
 export const deleteTeam = (id: string) => {
-  axios.delete(`http://127.0.0.1:8080/api/teams/${id}`)
+  axios.delete(`${url}/api/teams/${id}`)
 }
 
 const deletePlayers = async () => {
   const res = await getPlayers();
   res.map((player: Player) => (
-    axios.delete(`http://127.0.0.1:8080/api/players/${player._id}`)
+    axios.delete(`${url}/api/players/${player._id}`)
   ))
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Team } from '../interfaces';
 import pitch from '../assets/imgs/3dsection.png';
 import styled from 'styled-components';
-import PlayerCard from '../components/PlayerCard';
+import { Icon } from 'semantic-ui-react';
+import PlayerCard from './PlayerCard';
 
 const Grid = styled.div`
   width: 70%;
@@ -23,7 +23,7 @@ const PlayerDiv = styled.div`
 function TeamLayout({ team }: any) {
   const renderTeam = () => {
     if (!team) {
-      return null;
+      return <Icon loading name="spinner" />;
     } else {
       return (
         <Grid>

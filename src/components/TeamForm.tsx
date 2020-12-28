@@ -48,7 +48,7 @@ function TeamForm({
 }: TeamFormProps) {
   return (
     <Container>
-      <div className="team-name">
+      <div>
         <h3>Your Team Name: {team.teamName}</h3>
       </div>
       <Form>
