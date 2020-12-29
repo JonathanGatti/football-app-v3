@@ -10,7 +10,6 @@ import TeamLayout from '../components/TeamLayout';
 
 const Container = styled.div`
   display: flex;
-  height: 100%;
   .content {
     display: flex;
     justify-content: space-between;
@@ -20,6 +19,7 @@ const Container = styled.div`
   }
   .list {
     width: 65%;
+    max-height: 34vw;
     overflow: scroll;
   }
   .btns {
@@ -72,36 +72,38 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
       return <Icon loading name="spinner" />;
     } else {
       return (
-        <Container>
-          <Modal open={open} basic>
-            <Modal.Content>
-              {team1.teamName} score is: {team1.rating}
-            </Modal.Content>
-            <Modal.Content>
-              {team2.teamName} score is: {team2.rating}
-            </Modal.Content>
-            <Modal.Content>The Winning Team is:</Modal.Content>
-            <Header>{winningTeam}!</Header>
-            <Button basic color="red" inverted onClick={() => setOpen(false)}>
-              <Icon name="remove" />
-            </Button>
-          </Modal>
-          <div className="list">
-            <TeamsList addToFightBtn={renderAddToFightBtn} />
-          </div>
-          <div className="content">
-            <div className="team">
-              <TeamLayout team={team1} />
+        <>
+          <Container>
+            <Modal open={open} basic>
+              <Modal.Content>
+                {team1.teamName} score is: {team1.rating}
+              </Modal.Content>
+              <Modal.Content>
+                {team2.teamName} score is: {team2.rating}
+              </Modal.Content>
+              <Modal.Content>The Winning Team is:</Modal.Content>
+              <Header>{winningTeam}!</Header>
+              <Button basic color="red" inverted onClick={() => setOpen(false)}>
+                <Icon name="remove" />
+              </Button>
+            </Modal>
+            <div className="list">
+              <TeamsList addToFightBtn={renderAddToFightBtn} />
             </div>
-            <div className="team">
-              <TeamLayout team={team2} />
+            <div className="content">
+              <div className="team">
+                <TeamLayout team={team1} />
+              </div>
+              <div className="team">
+                <TeamLayout team={team2} />
+              </div>
             </div>
-          </div>
+          </Container>
           <div className="btns">
             <Button onClick={handleFightBtn}>Fight!</Button>
             <Button onClick={handleResetBtn}>Reset</Button>
           </div>
-        </Container>
+        </>
       );
     }
   };

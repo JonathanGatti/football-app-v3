@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import pitch from '../assets/imgs/3dsection.png';
 
 export const AppContainer = styled.div`
-  color: rgba(2, 5, 47, 0.75);
+  color: rgba(0, 0, 5, 0.75);
   font-family: sans-serif;
   display: flex;
   justify-content: center;
