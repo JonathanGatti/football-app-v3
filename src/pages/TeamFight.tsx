@@ -19,7 +19,7 @@ const Container = styled.div`
   }
   .list {
     width: 65%;
-    max-height: 34vw;
+    max-height: 70vh;
     overflow: scroll;
   }
   .btns {

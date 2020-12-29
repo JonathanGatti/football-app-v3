@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import pitch from '../assets/imgs/3dsection.png';
 
 export const AppContainer = styled.div`
-  color: rgba(0, 0, 5, 0.75);
   font-family: sans-serif;
   display: flex;
   justify-content: center;
@@ -10,7 +9,7 @@ export const AppContainer = styled.div`
   margin-right: auto;
   color: #140159;
   width: 90vw;
-  height: 100vh;
+  height: 90vh;
 `;
 
 export const Grid = styled.div`
