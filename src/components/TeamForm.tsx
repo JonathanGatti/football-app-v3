@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Label, Form, Button, Input } from 'semantic-ui-react';
+import { Label, Form, Button } from 'semantic-ui-react';
 import { classic, defensive, offensive } from '../utils/teamModules';
-import { Player, TeamFormProps } from '../interfaces';
+import { TeamFormProps } from '../interfaces';
 
 const Container = styled.div`
-  background-color: #17135d;
+  background-color: #0029a5;
   color: white;
   margin-right: 1rem;
-  margin-top: 2em;
   display: flex;
   flex-direction: column;
   width: 25%;
@@ -17,14 +16,6 @@ const Container = styled.div`
   padding-bottom: 1em;
   padding-left: 0.4em;
   border-radius: 15px;
-  .submit-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    height: 30px;
-    margin-top: auto;
-  }
   .label {
     max-width: 90%;
     margin-top: 0.6em;
@@ -103,13 +94,7 @@ function TeamForm({
         </p>
       </Label>
       <img src={team.logo} alt="logo" />
-
-      <Button
-        disabled={disableBtn}
-        className="submit-btn"
-        type="submit"
-        onClick={onClick}
-      >
+      <Button disabled={disableBtn} type="submit" onClick={onClick}>
         Submit
       </Button>
     </Container>

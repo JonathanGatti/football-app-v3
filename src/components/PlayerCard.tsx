@@ -2,19 +2,18 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PlayerInfo from './PlayerInfo';
 import { PlayerProps } from '../interfaces';
-import background from '../assets/imgs/player_card_background.png';
+import shirt from '../assets/imgs/football_shirt1.png';
 
 const PlayerCardDiv = styled.div`
-  width: 80px;
-  height: 95px;
-  background-image: url(${background});
-  background-size: 100%;
+  width: 110px;
+  height: 100px;
+  background-image: url(${shirt});
+  background-size: 80%;
+  font-size: 16px;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
 `;
 
 function PlayerCard({ player }: PlayerProps) {
@@ -29,7 +28,6 @@ function PlayerCard({ player }: PlayerProps) {
       onMouseLeave={handleMouseLeave}
     >
       <h5>{player.player_name}</h5>
-      <p>{player.position}</p>
       {open ? <PlayerInfo player={player} /> : null}
     </PlayerCardDiv>
   );

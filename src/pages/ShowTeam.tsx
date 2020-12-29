@@ -9,7 +9,6 @@ import TeamLayout from '../components/TeamLayout';
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 2em;
 `;
 
 const TeamStats = styled.div`

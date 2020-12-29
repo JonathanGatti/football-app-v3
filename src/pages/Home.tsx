@@ -1,48 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import player from '../assets/imgs/home_page_player.png';
+import { Button } from 'semantic-ui-react';
+import image from '../assets/imgs/home_page_img.png';
 
 const HomePage = styled.div`
   .header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    h1 {
-      color: #212020;
-      font-weight: 500;
-      font-size: 38px;
-      letter-spacing: 2px;
+    justify-content: space-around;
+    .text {
+      width: 50%;
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2em;
+        flex-basis: 33%;
+      }
     }
     img {
-      max-width: 60vw;
-      max-height: 40vh;
-      margin-left: 28em;
-      margin-top: 3em;
-    }
-  }
-  hr {
-    color: #064cd5;
-    width: 90%;
-  }
-  .content {
-    width: 100%;
-    height: 48vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .btns {
-      padding: 30px 50px;
-      margin: 5em;
-      margin-top: 0;
-      background-color: #064cd5;
-      border: none;
-      border-radius: 5px;
-      font-size: 18px;
-      color: white;
-    }
-    .btns:hover {
-      cursor: pointer;
+      max-width: 50%;
+      max-height: 65vh;
+      border-radius: 30px;
     }
   }
 `;
@@ -51,20 +30,37 @@ function Home() {
   return (
     <HomePage>
       <div className="header">
-        <h1>The Football App</h1>
-        <img src={player} />
-      </div>
-      <hr />
-      <div className="content">
-        <Link to="/team/create" className="btns">
-          Create Your Team
-        </Link>
-        <Link to="/fight" className="btns">
-          Fight Two Teams
-        </Link>
-        <Link to="/list" className="btns">
-          List of all the Teams
-        </Link>
+        <div className="text">
+          <h1>The Football App</h1>
+          <h3>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+            nihil odit molestias! Laborum, voluptatibus quis dolorum tenetur
+            asperiores dignissimos error nihil ut in fugit ad quibusdam id
+            perspiciatis nesciunt delectus.
+          </h3>
+          <div className="buttons">
+            <Button
+              as={Link}
+              to="team/create"
+              attached="bottom"
+              content="Create Your Team"
+            />
+            <Button
+              as={Link}
+              to="/list"
+              attached="bottom"
+              content="List of All The Teams"
+            />
+            <Button
+              as={Link}
+              to="/fight"
+              attached="bottom"
+              content="Teams Fight"
+            />
+          </div>
+        </div>
+
+        <img src={image} />
       </div>
     </HomePage>
   );

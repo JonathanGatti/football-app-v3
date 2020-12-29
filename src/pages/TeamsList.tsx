@@ -1,20 +1,10 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Team } from '../interfaces';
 import { fetchTeams, deleteTeam } from '../actions';
 import { Button, Card, Image, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { TeamsListProps } from '../interfaces';
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  margin-top: 5em;
-`;
 
 function TeamsList({
   teams,
@@ -35,43 +25,41 @@ function TeamsList({
       return <Icon loading name="spinner" />;
     } else {
       return (
-        <Container>
-          <Card.Group>
-            {teams.teams.map((team: Team) => (
-              <Card>
-                <Card.Content>
-                  <Image floated="right" size="mini" src={team.logo} />
-                  <Card.Header>{team.teamName}</Card.Header>
-                  <Card.Meta>Rating : {team.rating}</Card.Meta>
-                </Card.Content>
-                <Card.Content extra>
-                  <div className="ui two buttons">
-                    {!addToFightBtn ? (
-                      <>
-                        <Link to={`/team/${team._id}`}>
-                          <Button basic color="green">
-                            Go To Team
-                          </Button>
-                        </Link>
-                        {auth.userId === team.userId ? (
-                          <Button
-                            basic
-                            color="red"
-                            onClick={(e) => handleClick(team._id!)}
-                          >
-                            DELETE
-                          </Button>
-                        ) : null}
-                      </>
-                    ) : (
-                      addToFightBtn!(team)
-                    )}
-                  </div>
-                </Card.Content>
-              </Card>
-            ))}
-          </Card.Group>
-        </Container>
+        <Card.Group>
+          {teams.teams.map((team: Team) => (
+            <Card>
+              <Card.Content>
+                <Image floated="right" size="mini" src={team.logo} />
+                <Card.Header>{team.teamName}</Card.Header>
+                <Card.Meta>Rating : {team.rating}</Card.Meta>
+              </Card.Content>
+              <Card.Content extra>
+                <div className="ui two buttons">
+                  {!addToFightBtn ? (
+                    <>
+                      <Link to={`/team/${team._id}`}>
+                        <Button basic color="green">
+                          Go To Team
+                        </Button>
+                      </Link>
+                      {auth.userId === team.userId ? (
+                        <Button
+                          basic
+                          color="red"
+                          onClick={(e) => handleClick(team._id!)}
+                        >
+                          DELETE
+                        </Button>
+                      ) : null}
+                    </>
+                  ) : (
+                    addToFightBtn!(team)
+                  )}
+                </div>
+              </Card.Content>
+            </Card>
+          ))}
+        </Card.Group>
       );
     }
   };

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import pitch from '../assets/imgs/3dsection.png';
+import React, { useState } from 'react';
+import { Grid, PlayerDiv } from '../styles/styledComponents';
 import SearchPlayerForm from '../components/SearchPlayerForm';
 import PlayerCard from '../components/PlayerCard';
 import { Team } from '../interfaces';
@@ -10,26 +9,6 @@ import { useForceUpdate } from '../utils/forceComponentUpdate';
 import { createTeam } from '../actions';
 import { CreateTeamProps } from '../interfaces';
 import TeamForm from '../components/TeamForm';
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const Grid = styled.div`
-  width: 70%;
-  height: 90vh;
-  background-image: url(${pitch});
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-`;
-
-const PlayerDiv = styled.div`
-  display: flex;
-  justify-content: center;
-`;
 
 function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   const forceUpdate = useForceUpdate();
@@ -64,7 +43,7 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
     createTeam(data);
   };
   return (
-    <Container>
+    <>
       <TeamForm
         onSelectChange={handleSelectChange}
         onNameChange={handleNameChange}
@@ -94,7 +73,7 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
           ))}
         </div>
       </Grid>
-    </Container>
+    </>
   );
 }
 
