@@ -71,7 +71,7 @@ export interface TeamFormProps {
 
 export interface CreateTeamProps {
   createTeam: (data: Team) => void;
-  auth: { userId: string; isSigendIn: boolean };
+  auth: { userId: string; isSignedIn: boolean };
 }
 
 export interface ShowTeamProps {

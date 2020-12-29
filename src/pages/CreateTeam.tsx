@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Grid, PlayerDiv } from '../styles/styledComponents';
 import SearchPlayerForm from '../components/SearchPlayerForm';
 import PlayerCard from '../components/PlayerCard';
+import GoogleAuth from '../components/GoogleAuth';
 import { Team } from '../interfaces';
 import { connect } from 'react-redux';
 import { defaultTeam } from '../utils/defaultTeam';
@@ -42,44 +43,57 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
     };
     createTeam(data);
   };
-  return (
-    <>
-      <TeamForm
-        onSelectChange={handleSelectChange}
-        onNameChange={handleNameChange}
-        onLogoChange={handleLogoChange}
-        onClick={handleClick}
-        team={team}
-      />
-      <Grid>
-        <div className="ui centered grid">
-          {team.teamModule.map((size, i) => (
-            <div key={i} className={`${size} wide column`}>
-              {team.teamPlayers[i]._id === 0 ? (
-                <PlayerDiv>
-                  <SearchPlayerForm
-                    team={team}
-                    setRating={setRating}
-                    setTeam={setTeam}
-                    index={i}
-                  />
-                </PlayerDiv>
-              ) : (
-                <PlayerDiv key={i}>
-                  <PlayerCard player={team.teamPlayers[i]} />
-                </PlayerDiv>
-              )}
-            </div>
-          ))}
+
+  const render = () => {
+    if (!auth.isSignedIn) {
+      return (
+        <div>
+          <p>You have to be logged in to Create a Team</p>
+          <GoogleAuth />
         </div>
-      </Grid>
-    </>
-  );
+      );
+    } else {
+      return (
+        <>
+          <TeamForm
+            onSelectChange={handleSelectChange}
+            onNameChange={handleNameChange}
+            onLogoChange={handleLogoChange}
+            onClick={handleClick}
+            team={team}
+          />
+          <Grid>
+            <div className="ui centered grid">
+              {team.teamModule.map((size, i) => (
+                <div key={i} className={`${size} wide column`}>
+                  {team.teamPlayers[i]._id === 0 ? (
+                    <PlayerDiv>
+                      <SearchPlayerForm
+                        team={team}
+                        setRating={setRating}
+                        setTeam={setTeam}
+                        index={i}
+                      />
+                    </PlayerDiv>
+                  ) : (
+                    <PlayerDiv key={i}>
+                      <PlayerCard player={team.teamPlayers[i]} />
+                    </PlayerDiv>
+                  )}
+                </div>
+              ))}
+            </div>
+          </Grid>
+        </>
+      );
+    }
+  };
+  return <>{render()}</>;
 }
 
 interface StateToProps {
   auth: {
-    isSigendIn: boolean;
+    isSignedIn: boolean;
     userId: string;
   };
 }
