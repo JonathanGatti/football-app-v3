@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import player from '../assets/imgs/home_page_player.png';
 
 const HomePage = styled.div`
-  .top {
+  .header {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,7 +25,7 @@ const HomePage = styled.div`
     color: #064cd5;
     width: 90%;
   }
-  .bottom {
+  .content {
     width: 100%;
     height: 48vh;
     display: flex;
@@ -50,12 +50,12 @@ const HomePage = styled.div`
 function Home() {
   return (
     <HomePage>
-      <div className="top">
+      <div className="header">
         <h1>The Football App</h1>
         <img src={player} />
       </div>
       <hr />
-      <div className="bottom">
+      <div className="content">
         <Link to="/team/create" className="btns">
           Create Your Team
         </Link>

@@ -9,7 +9,7 @@ import Header from './components/Header';
 import styled from 'styled-components';
 
 const AppContainer = styled.div`
-  font-family: 'Hind Siliguri', sans-serif;
+  font-family: sans-serif;
   width: 100vw;
   height: 100vh;
   background-color: white;

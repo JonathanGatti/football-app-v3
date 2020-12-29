@@ -73,6 +73,7 @@ function SearchPlayerForm({
                 searchResult.map((player: Player) => (
                   <>
                     <SearchResultList
+                      key={player.player_id}
                       index={index}
                       onClick={handleClick}
                       onOpen={setOpen}

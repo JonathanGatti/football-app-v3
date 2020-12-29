@@ -84,7 +84,7 @@ function TeamForm({
             }}
           />
         </Label>
-        <Label className="label" l>
+        <Label className="label">
           Select Your Module
           <select
             value={team.teamModule}

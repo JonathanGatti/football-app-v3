@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Button, Icon, List } from 'semantic-ui-react';
 import { SearchResultListProps } from '../interfaces';
 
-const ListDiv = styled.div`
+const Container = styled.div`
   display: flex;
   width: 50vw;
 `;
@@ -15,7 +15,7 @@ function SearchResultList({
   index,
 }: SearchResultListProps) {
   return (
-    <ListDiv>
+    <Container>
       <List.Item
         style={{
           width: '100%',
@@ -37,7 +37,7 @@ function SearchResultList({
           Add To The Team
         </Button>
       </List.Item>
-    </ListDiv>
+    </Container>
   );
 }
 

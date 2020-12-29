@@ -33,6 +33,9 @@ const Header = () => {
         <Link className="link" to="/teams">
           Your Teams
         </Link>
+        <Link className="link" to="/list">
+          All the Teams
+        </Link>
       </div>
       <GoogleAuth />
     </Navbar>

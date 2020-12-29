@@ -75,9 +75,9 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
       <Grid>
         <div className="ui centered grid">
           {team.teamModule.map((size, i) => (
-            <div className={`${size} wide column`}>
+            <div key={i} className={`${size} wide column`}>
               {team.teamPlayers[i]._id === 0 ? (
-                <PlayerDiv key={i}>
+                <PlayerDiv>
                   <SearchPlayerForm
                     team={team}
                     setRating={setRating}
