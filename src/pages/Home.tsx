@@ -19,7 +19,7 @@ function Home() {
           <div className="buttons">
             <Button
               as={Link}
-              to="team/create"
+              to="/create"
               attached="bottom"
               content="Create Your Team"
             />

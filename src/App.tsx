@@ -15,7 +15,7 @@ function App() {
       <AppContainer>
         <Switch>
           <Route exact path="/" render={() => <Home />} />
-          <Route exact path="/team/create" render={() => <CreateTeam />} />
+          <Route exact path="/create" render={() => <CreateTeam />} />
           <Route exact path="/fight" render={() => <TeamFight />} />
           <Route
             exact

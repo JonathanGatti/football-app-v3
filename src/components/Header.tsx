@@ -9,14 +9,11 @@ const Header = () => {
       <Menu.Item name="Menu">
         <Link to="/">Home</Link>
       </Menu.Item>
-      <Menu.Item name="Your Teams">
-        <Link to="/teams">Your Teams</Link>
-      </Menu.Item>
       <Menu.Item name="All The Teams">
         <Link to="/list">All the Teams</Link>
       </Menu.Item>
       <Menu.Item name="Create Your Team">
-        <Link to="/team/create">Create Your Team</Link>
+        <Link to="/create">Create Your Team</Link>
       </Menu.Item>
       <Menu.Item name="Team Fight">
         <Link to="/fight">Team Fight</Link>

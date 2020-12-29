@@ -10,12 +10,20 @@ import TeamLayout from '../components/TeamLayout';
 
 const Container = styled.div`
   display: flex;
+  height: 100%;
   .content {
     display: flex;
     justify-content: space-between;
   }
   .modal {
     margin: auto;
+  }
+  .list {
+    width: 65%;
+    overflow: scroll;
+  }
+  .btns {
+    align-self: flex-end;
   }
 `;
 
@@ -66,6 +74,12 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
       return (
         <Container>
           <Modal open={open} basic>
+            <Modal.Content>
+              {team1.teamName} score is: {team1.rating}
+            </Modal.Content>
+            <Modal.Content>
+              {team2.teamName} score is: {team2.rating}
+            </Modal.Content>
             <Modal.Content>The Winning Team is:</Modal.Content>
             <Header>{winningTeam}!</Header>
             <Button basic color="red" inverted onClick={() => setOpen(false)}>
@@ -74,8 +88,6 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
           </Modal>
           <div className="list">
             <TeamsList addToFightBtn={renderAddToFightBtn} />
-            <Button onClick={handleFightBtn}>Fight!</Button>
-            <Button onClick={handleResetBtn}>Reset</Button>
           </div>
           <div className="content">
             <div className="team">
@@ -84,6 +96,10 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
             <div className="team">
               <TeamLayout team={team2} />
             </div>
+          </div>
+          <div className="btns">
+            <Button onClick={handleFightBtn}>Fight!</Button>
+            <Button onClick={handleResetBtn}>Reset</Button>
           </div>
         </Container>
       );
