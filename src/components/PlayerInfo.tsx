@@ -7,7 +7,7 @@ const PlayerInfo = ({ player }: PlayerProps) => {
   return (
     <PlayerInfoContainer>
       <Card>
-        <Card.Content>
+        <Card.Content className="card">
           <Card.Header>{player.player_name}</Card.Header>
           <Card.Meta>{player.position}</Card.Meta>
           <Card.Meta>Country: {player.birth_country}</Card.Meta>

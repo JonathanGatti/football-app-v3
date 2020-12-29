@@ -33,6 +33,10 @@ export const PlayerInfoContainer = styled.div`
   width: 10vw;
   z-index: 10;
   position: absolute;
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const PlayerCardContainer = styled.div`

@@ -91,21 +91,19 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
   };
 
   const renderAddToFightBtn = (team: Team) => {
+    let disabled = false;
     if (team1.rating !== 0 && team2.rating !== 0) {
-      return (
-        <div>
-          <Button disabled onClick={() => setTeams(team)}>
-            Add Team
-          </Button>
-        </div>
-      );
+      disabled = true;
     } else {
-      return (
-        <div>
-          <Button onClick={() => setTeams(team)}>Add Team</Button>
-        </div>
-      );
+      disabled = false;
     }
+    return (
+      <div>
+        <Button disabled={disabled} onClick={() => setTeams(team)}>
+          Add Team
+        </Button>
+      </div>
+    );
   };
 
   return <div>{render()}</div>;
