@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { fetchTeams } from '../actions';
-import { Icon, Button } from 'semantic-ui-react';
+import { Icon, Button, Modal, Header } from 'semantic-ui-react';
 import { Team } from '../interfaces';
 import TeamsList from './TeamsList';
 import { defaultTeam } from '../utils/defaultTeam';
@@ -13,6 +13,9 @@ const Container = styled.div`
   .content {
     display: flex;
     justify-content: space-between;
+  }
+  .modal {
+    margin: auto;
   }
 `;
 
@@ -26,6 +29,7 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
   const [team1, setTeam1] = useState(defaultTeam);
   const [team2, setTeam2] = useState(defaultTeam);
   const [winningTeam, setWinningTeam] = useState('');
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     fetchTeams();
@@ -38,12 +42,14 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
       } else {
         setWinningTeam(team2.teamName);
       }
+      setOpen(true);
     }
   };
 
   const handleResetBtn = () => {
     setTeam2(defaultTeam);
     setTeam1(defaultTeam);
+    setWinningTeam('');
   };
 
   const setTeams = (team: Team) => {
@@ -59,7 +65,13 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
     } else {
       return (
         <Container>
-          <div className="score">{winningTeam}</div>
+          <Modal open={open} basic>
+            <Modal.Content>The Winning Team is:</Modal.Content>
+            <Header>{winningTeam}!</Header>
+            <Button basic color="red" inverted onClick={() => setOpen(false)}>
+              <Icon name="remove" />
+            </Button>
+          </Modal>
           <div className="list">
             <TeamsList addToFightBtn={renderAddToFightBtn} />
             <Button onClick={handleFightBtn}>Fight!</Button>
@@ -79,11 +91,21 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
   };
 
   const renderAddToFightBtn = (team: Team) => {
-    return (
-      <div>
-        <Button onClick={() => setTeams(team)}>Add Team</Button>
-      </div>
-    );
+    if (team1.rating !== 0 && team2.rating !== 0) {
+      return (
+        <div>
+          <Button disabled onClick={() => setTeams(team)}>
+            Add Team
+          </Button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Button onClick={() => setTeams(team)}>Add Team</Button>
+        </div>
+      );
+    }
   };
 
   return <div>{render()}</div>;
