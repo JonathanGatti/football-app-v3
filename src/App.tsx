@@ -6,18 +6,7 @@ import TeamFight from './pages/TeamFight';
 import TeamsList from './pages/TeamsList';
 import ShowTeam from './pages/ShowTeam';
 import Header from './components/Header';
-import styled from 'styled-components';
-
-const AppContainer = styled.div`
-  font-family: sans-serif;
-  display: flex;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  color: #140159;
-  width: 90vw;
-  height: 100vh;
-`;
+import { AppContainer } from './styles/styledComponents';
 
 function App() {
   return (

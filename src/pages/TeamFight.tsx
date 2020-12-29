@@ -10,19 +10,9 @@ import TeamLayout from '../components/TeamLayout';
 
 const Container = styled.div`
   display: flex;
-  .list {
-    width: 25%;
-    height: 100vh;
-    .reset-btn {
-      margin-left: 1em;
-    }
-  }
-  .pitch {
+  .content {
     display: flex;
-    width: 80%;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
   }
 `;
 
@@ -35,37 +25,23 @@ interface TeamFightProps {
 function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
   const [team1, setTeam1] = useState(defaultTeam);
   const [team2, setTeam2] = useState(defaultTeam);
+  const [winningTeam, setWinningTeam] = useState('');
 
   useEffect(() => {
     fetchTeams();
   }, [team1, team2]);
 
-  const render = () => {
-    if (!teams) {
-      return <Icon loading name="spinner" />;
-    } else {
-      return (
-        <Container>
-          <div className="list">
-            <TeamsList addToFightBtn={renderAddToFightBtn} />
-            <Button className="reset-btn" onClick={resetTeams}>
-              Reset
-            </Button>
-          </div>
-          <div className="pitch">
-            <div className="team">
-              <TeamLayout team={team1} />
-            </div>
-            <div className="team">
-              <TeamLayout team={team2} />
-            </div>
-          </div>
-        </Container>
-      );
+  const handleFightBtn = () => {
+    if (team1.rating !== 0 && team2.rating !== 0) {
+      if (team1.rating > team2.rating) {
+        setWinningTeam(team1.teamName);
+      } else {
+        setWinningTeam(team2.teamName);
+      }
     }
   };
 
-  const resetTeams = () => {
+  const handleResetBtn = () => {
     setTeam2(defaultTeam);
     setTeam1(defaultTeam);
   };
@@ -75,6 +51,30 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
       setTeam1(team);
     } else {
       setTeam2(team);
+    }
+  };
+  const render = () => {
+    if (!teams) {
+      return <Icon loading name="spinner" />;
+    } else {
+      return (
+        <Container>
+          <div className="score">{winningTeam}</div>
+          <div className="list">
+            <TeamsList addToFightBtn={renderAddToFightBtn} />
+            <Button onClick={handleFightBtn}>Fight!</Button>
+            <Button onClick={handleResetBtn}>Reset</Button>
+          </div>
+          <div className="content">
+            <div className="team">
+              <TeamLayout team={team1} />
+            </div>
+            <div className="team">
+              <TeamLayout team={team2} />
+            </div>
+          </div>
+        </Container>
+      );
     }
   };
 

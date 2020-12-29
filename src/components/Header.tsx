@@ -18,6 +18,9 @@ const Header = () => {
       <Menu.Item name="Create Your Team">
         <Link to="/team/create">Create Your Team</Link>
       </Menu.Item>
+      <Menu.Item name="Team Fight">
+        <Link to="/fight">Team Fight</Link>
+      </Menu.Item>
       <Menu.Item name="Sign In" position="right">
         <GoogleAuth />
       </Menu.Item>

@@ -1,30 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 import image from '../assets/imgs/home_page_img.png';
-
-const HomePage = styled.div`
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    .text {
-      width: 50%;
-      .buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 2em;
-        flex-basis: 33%;
-      }
-    }
-    img {
-      max-width: 50%;
-      max-height: 65vh;
-      border-radius: 30px;
-    }
-  }
-`;
+import { HomePage } from '../styles/styledComponents';
 
 function Home() {
   return (
@@ -55,11 +33,10 @@ function Home() {
               as={Link}
               to="/fight"
               attached="bottom"
-              content="Teams Fight"
+              content="Team Fight"
             />
           </div>
         </div>
-
         <img src={image} />
       </div>
     </HomePage>

@@ -31,7 +31,6 @@ function TeamsList({
               <Card.Content>
                 <Image floated="right" size="mini" src={team.logo} />
                 <Card.Header>{team.teamName}</Card.Header>
-                <Card.Meta>Rating : {team.rating}</Card.Meta>
               </Card.Content>
               <Card.Content extra>
                 <div className="ui two buttons">

@@ -1,13 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import { PlayerInfoContainer } from '../styles/styledComponents';
 import { PlayerProps } from '../interfaces';
 import { Card, Button } from 'semantic-ui-react';
-
-const PlayerInfoContainer = styled.div`
-  width: 10vw;
-  z-index: 10;
-  position: absolute;
-`;
 
 const PlayerInfo = ({ player }: PlayerProps) => {
   return (

@@ -5,7 +5,7 @@ import { classic, defensive, offensive } from '../utils/teamModules';
 import { TeamFormProps } from '../interfaces';
 
 const Container = styled.div`
-  background-color: #0029a5;
+  background-color: rgba(2, 5, 47, 0.85);
   color: white;
   margin-right: 1rem;
   display: flex;
