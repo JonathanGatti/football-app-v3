@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 const apiKey = process.env.REACT_APP_API_KEY;
-
-const url = 'https://api-football-v1.p.rapidapi.com/v2/players/';
+const url = process.env.REACT_APP_EXTERNAL_API_BASE_URL;
 
 export async function getPlayer(name: string | Event){
   try {

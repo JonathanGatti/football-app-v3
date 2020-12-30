@@ -10,6 +10,7 @@ import { useForceUpdate } from '../utils/forceComponentUpdate';
 import { createTeam } from '../actions';
 import { CreateTeamProps } from '../interfaces';
 import TeamForm from '../components/TeamForm';
+import { Icon } from 'semantic-ui-react';
 
 function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   const forceUpdate = useForceUpdate();
@@ -45,6 +46,9 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   };
 
   const render = () => {
+    if (auth.isSignedIn === null) {
+      return <Icon loading name="spinner" />;
+    }
     if (!auth.isSignedIn) {
       return (
         <div style={{ margin: 'auto' }}>
