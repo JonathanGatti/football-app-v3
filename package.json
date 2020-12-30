@@ -1,4 +1,5 @@
 {
+  "homepage": "https://JonathanGatti.github.io/football-app-v3",
   "name": "football-app",
   "version": "0.1.0",
   "private": true,
@@ -15,6 +16,7 @@
     "@types/react-router-dom": "^5.1.6",
     "@types/styled-components": "^5.1.7",
     "axios": "^0.21.1",
+    "gh-pages": "^3.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
@@ -29,6 +31,8 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

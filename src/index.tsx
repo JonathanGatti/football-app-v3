@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { Router } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import history from './history';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -18,13 +18,13 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <Router history={history}>
+  <HashRouter basename="/">
     <Provider store={store}>
       <React.StrictMode>
         <App />
       </React.StrictMode>
     </Provider>
-  </Router>,
+  </HashRouter>,
   document.getElementById('root')
 );
 

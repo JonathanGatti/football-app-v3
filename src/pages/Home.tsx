@@ -11,10 +11,8 @@ function Home() {
         <div className="text">
           <h1>The Football App</h1>
           <h3>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-            nihil odit molestias! Laborum, voluptatibus quis dolorum tenetur
-            asperiores dignissimos error nihil ut in fugit ad quibusdam id
-            perspiciatis nesciunt delectus.
+            Create your dream teams and make it compete against to see which is
+            best
           </h3>
           <div className="buttons">
             <Button

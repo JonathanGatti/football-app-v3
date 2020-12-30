@@ -44,6 +44,8 @@ export const PlayerCardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 14px;
+  color: lightgray;
   img {
     width: 100px;
     height: 80px;
@@ -54,7 +56,7 @@ export const HomePage = styled.div`
   .header {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     .text {
       width: 50%;
       .buttons {

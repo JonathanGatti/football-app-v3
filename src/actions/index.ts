@@ -1,6 +1,5 @@
 import {SIGN_IN, SIGN_OUT, FETCH_TEAM, FETCH_TEAMS, CREATE_TEAM, DELETE_TEAM, EDIT_TEAM} from './types';
 import {Team, Player} from '../interfaces';
-import history from '../history';
 import teams from '../api/teams';
 
 export const signIn = (userId: string | number) => {
@@ -53,6 +52,6 @@ export const deleteTeam = (id: string) => {
     teams.delete(`/api/teams/${id}`)
 
     dispatch({ type: DELETE_TEAM, payload: id })
-    history.push('/');
+    window.location.assign('/');
   }
 }
