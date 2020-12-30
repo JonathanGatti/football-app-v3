@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
+import { Team } from '../interfaces';
 import PlayerCard from './PlayerCard';
 import { Grid, PlayerDiv } from '../styles/styledComponents';
 

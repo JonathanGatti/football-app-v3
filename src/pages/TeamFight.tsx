@@ -15,7 +15,6 @@ const Container = styled.div`
     justify-content: space-between;
   }
   .modal {
-    margin: auto;
   }
   .list {
     width: 65%;
@@ -75,17 +74,24 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
         <>
           <Container>
             <Modal open={open} basic>
-              <Modal.Content>
-                {team1.teamName} score is: {team1.rating}
-              </Modal.Content>
-              <Modal.Content>
-                {team2.teamName} score is: {team2.rating}
-              </Modal.Content>
-              <Modal.Content>The Winning Team is:</Modal.Content>
-              <Header>{winningTeam}!</Header>
-              <Button basic color="red" inverted onClick={() => setOpen(false)}>
-                <Icon name="remove" />
-              </Button>
+              <div className="modal">
+                <Modal.Content>
+                  {team1.teamName} score is: {team1.rating}
+                </Modal.Content>
+                <Modal.Content>
+                  {team2.teamName} score is: {team2.rating}
+                </Modal.Content>
+                <Modal.Content>The Winning Team is:</Modal.Content>
+                <Header>{winningTeam}!</Header>
+                <Button
+                  basic
+                  color="red"
+                  inverted
+                  onClick={() => setOpen(false)}
+                >
+                  <Icon name="remove" />
+                </Button>
+              </div>
             </Modal>
             <div className="list">
               <TeamsList addToFightBtn={renderAddToFightBtn} />

@@ -21,12 +21,12 @@ function TeamsList({
     deleteTeam!(id);
   };
   const renderTeams = () => {
-    if (!teams.teams) {
+    if (!teams) {
       return <Icon loading name="spinner" />;
     } else {
       return (
         <Card.Group>
-          {teams.teams.map((team: Team) => (
+          {teams.map((team: Team) => (
             <Card>
               <Card.Content>
                 <Image floated="right" size="mini" src={team.logo} />
@@ -72,6 +72,6 @@ interface StateToProps {
 }
 
 const mapStateToProps = (state: StateToProps) => {
-  return { teams: state.teams, auth: state.auth };
+  return { teams: Object.values(state.teams), auth: state.auth };
 };
 export default connect(mapStateToProps, { fetchTeams, deleteTeam })(TeamsList);

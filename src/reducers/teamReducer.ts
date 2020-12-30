@@ -4,7 +4,7 @@ import _ from 'lodash';
 export const teamReducer = (state={}, action: any) => {
   switch(action.type){
     case FETCH_TEAMS:
-      return{ ...state, teams: action.payload};
+      return{ ...state, ..._.mapKeys(action.payload, '_id')};
     case FETCH_TEAM:
       return {...state, [action.payload._id]: action.payload};
     case CREATE_TEAM:

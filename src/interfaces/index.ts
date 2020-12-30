@@ -1,5 +1,3 @@
-import PlayerInfo from "../components/PlayerInfo"
-
 export interface Player {
   _id: number;
   age: number;
