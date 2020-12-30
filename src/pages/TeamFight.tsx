@@ -28,11 +28,10 @@ const Container = styled.div`
 
 interface TeamFightProps {
   teams: any;
-  auth: { isSigendIn: boolean; userId: string };
   fetchTeams: () => void;
 }
 
-function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
+function TeamFight({ teams, fetchTeams }: TeamFightProps) {
   const [team1, setTeam1] = useState(defaultTeam);
   const [team2, setTeam2] = useState(defaultTeam);
   const [winningTeam, setWinningTeam] = useState('');
@@ -134,7 +133,7 @@ function TeamFight({ teams, auth, fetchTeams }: TeamFightProps) {
 }
 
 const mapStateToProps = (state: any) => {
-  return { teams: state.teams, auth: state.auth };
+  return { teams: state.teams };
 };
 
 export default connect(mapStateToProps, { fetchTeams })(TeamFight);
