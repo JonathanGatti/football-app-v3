@@ -52,6 +52,5 @@ export const deleteTeam = (id: string) => {
     teams.delete(`/api/teams/${id}`)
 
     dispatch({ type: DELETE_TEAM, payload: id })
-    window.location.assign('/');
   }
 }
