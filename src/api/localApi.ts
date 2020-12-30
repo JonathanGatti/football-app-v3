@@ -1,6 +1,6 @@
-import axios from 'axios';
 import {getPlayerRatings} from './externalApi';
 import {Player} from '../interfaces';
+import teams from './teams';
 
 interface Data {
   teamName: string;
@@ -10,11 +10,10 @@ interface Data {
   logo: string;
 }
 
-export const url = 'https://boiling-hollows-70973.herokuapp.com'
 
 export const getData = async () => {
   try {
-    const res = await axios.get(`${url}/api/teams`);
+    const res = await teams.get('/api/teams');
     return res.data;
   }
   catch(e) {
@@ -22,7 +21,7 @@ export const getData = async () => {
   }
 }
 export const postData = (data: Data) => {
-  axios.post(`${url}/api/teams`,
+  teams.post('/api/teams',
     data,
      {
       headers: {
@@ -44,7 +43,7 @@ export const postPlayer = async (data: Player) => {
   if(newPlayer === undefined){
     const playerRating = await getPlayerRatings(data.player_id)
     newPlayer = {...data, rating: playerRating};
-      axios.post(`${url}/api/players`,
+      teams.post(`/api/players`,
       newPlayer,
        {
         headers: {
@@ -60,7 +59,7 @@ export const postPlayer = async (data: Player) => {
 
 export const getPlayers = async () => {
   try {
-    const res = await axios.get(`${url}/api/players`);
+    const res = await teams.get(`/api/players`);
     return res.data;
   }
   catch(e) {
@@ -69,16 +68,16 @@ export const getPlayers = async () => {
 }
 
 export const getPlayerById = async (id: number) => {
-  const res = await axios.get(`${url}/api/players/${id}`)
+  const res = await teams.get(`/api/players/${id}`)
   return res;
 }
 export const deleteTeam = (id: string) => {
-  axios.delete(`${url}/api/teams/${id}`)
+  teams.delete(`/api/teams/${id}`)
 }
 
 const deletePlayers = async () => {
   const res = await getPlayers();
   res.map((player: Player) => (
-    axios.delete(`${url}/api/players/${player._id}`)
+    teams.delete(`/api/players/${player._id}`)
   ))
 }

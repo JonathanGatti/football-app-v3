@@ -5,6 +5,8 @@ import image from '../assets/imgs/home_page_img.png';
 import { HomePage } from '../styles/styledComponents';
 
 function Home() {
+  const api = process.env.REACT_APP_API_KEY;
+  console.log('api key ' + api);
   return (
     <HomePage>
       <div className="header">

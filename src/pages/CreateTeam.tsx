@@ -48,7 +48,7 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
     if (!auth.isSignedIn) {
       return (
         <div style={{ margin: 'auto' }}>
-          <p>You have to be logged in to Create a Team</p>
+          <p>You have to be logged in to create a team</p>
           <GoogleAuth />
         </div>
       );

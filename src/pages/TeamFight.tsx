@@ -72,16 +72,17 @@ function TeamFight({ teams, fetchTeams }: TeamFightProps) {
       return (
         <>
           <Container>
-            <Modal open={open} basic>
-              <div className="modal">
-                <Modal.Content>
+            <Modal open={open} basic size="small">
+              <Modal.Content>
+                <p>
                   {team1.teamName} score is: {team1.rating}
-                </Modal.Content>
-                <Modal.Content>
+                </p>
+                <p>
                   {team2.teamName} score is: {team2.rating}
-                </Modal.Content>
-                <Modal.Content>The Winning Team is:</Modal.Content>
-                <Header>{winningTeam}!</Header>
+                </p>
+              </Modal.Content>
+              <Header>The Winnning Team is: {winningTeam}!</Header>
+              <Modal.Actions>
                 <Button
                   basic
                   color="red"
@@ -89,8 +90,9 @@ function TeamFight({ teams, fetchTeams }: TeamFightProps) {
                   onClick={() => setOpen(false)}
                 >
                   <Icon name="remove" />
+                  Close
                 </Button>
-              </div>
+              </Modal.Actions>
             </Modal>
             <div className="list">
               <TeamsList addToFightBtn={renderAddToFightBtn} />

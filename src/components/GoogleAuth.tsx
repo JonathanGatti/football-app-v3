@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
 import { GoogleAuthProps } from '../interfaces';
-import { CLIENT_ID } from '../config';
 
-const clientId = CLIENT_ID;
+const clientId = process.env.REACT_APP_CLIENT_ID;
 
 function GoogleAuth({ isSignedIn, signIn, signOut }: GoogleAuthProps) {
   useEffect(() => {
