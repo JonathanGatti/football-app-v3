@@ -19,9 +19,10 @@ function TeamsList({
 
   const handleClick = (id: string) => {
     deleteTeam!(id);
+    console.log(teams);
   };
   const renderTeams = () => {
-    if (!teams) {
+    if (teams.length === 0) {
       return <Icon loading name="spinner" />;
     } else {
       return (

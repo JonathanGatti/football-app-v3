@@ -35,7 +35,7 @@ export const createTeam = (team: Team ) => {
     const res = await teams.post(`/api/teams`, team);
 
     dispatch({ type: CREATE_TEAM, payload: res.data })
-    window.location.assign('/list')
+    window.location.assign('/football-app-v3/#/list')
   }
 }
 
@@ -49,7 +49,7 @@ export const editTeam = (team: Team, id:string) => {
 
 export const deleteTeam = (id: string) => {
   return async (dispatch: any) => {
-    teams.delete(`/api/teams/${id}`)
+    await teams.delete(`/api/teams/${id}`)
 
     dispatch({ type: DELETE_TEAM, payload: id })
   }

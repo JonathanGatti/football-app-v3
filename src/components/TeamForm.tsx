@@ -94,7 +94,7 @@ function TeamForm({
         </p>
       </Label>
       <img src={team.logo} alt="logo" />
-      <Button disabled={disableBtn} type="submit" onClick={onClick}>
+      <Button disabled={disableBtn} type="button" onClick={onClick}>
         Submit
       </Button>
     </Container>
