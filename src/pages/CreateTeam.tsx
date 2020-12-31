@@ -31,12 +31,6 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
     forceUpdate(e);
   };
 
-  const setRating = (newRating: number) => {
-    setTeam({ ...team, rating: newRating });
-    console.log(newRating);
-    console.log(team.rating);
-  };
-
   const handleClick = () => {
     const data = {
       teamName: team.teamName.toUpperCase(),
@@ -78,7 +72,6 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
                     <PlayerDiv>
                       <SearchPlayerForm
                         team={team}
-                        setRating={setRating}
                         setTeam={setTeam}
                         index={i}
                       />

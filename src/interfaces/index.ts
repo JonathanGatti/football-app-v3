@@ -47,7 +47,6 @@ export interface PlayerInfoProps {
 export interface SearchPlayerFormProps {
   team: Team;
   setTeam: Function;
-  setRating: Function;
   index: number;
   editTeam?: (id: number, player: any) => void;
 }

@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 import { postPlayer } from '../api/localApi';
-import { Team, Player } from '../interfaces';
+import { Player } from '../interfaces';
 import SearchResultList from './SearchResultList';
 import { getPlayersAndFilterByName } from '../utils/getPlayersAndFilterByName';
 import { Header, Modal, List, Icon, Input, Divider } from 'semantic-ui-react';
 import { SearchPlayerFormProps } from '../interfaces';
-import { defaultTeam } from '../utils/defaultTeam';
 
-function SearchPlayerForm({
-  team,
-  setTeam,
-  setRating,
-  index,
-}: SearchPlayerFormProps) {
+function SearchPlayerForm({ team, setTeam, index }: SearchPlayerFormProps) {
   const [name, setName] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [open, setOpen] = useState(false);
