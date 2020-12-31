@@ -5,6 +5,7 @@ import SearchResultList from './SearchResultList';
 import { getPlayersAndFilterByName } from '../utils/getPlayersAndFilterByName';
 import { Header, Modal, List, Icon, Input, Divider } from 'semantic-ui-react';
 import { SearchPlayerFormProps } from '../interfaces';
+import { defaultTeam } from '../utils/defaultTeam';
 
 function SearchPlayerForm({
   team,
@@ -32,11 +33,15 @@ function SearchPlayerForm({
 
   const handleClick = async (player: Player, i: number) => {
     let newPlayer = await postPlayer(player);
-    team.teamPlayers[i] = newPlayer;
+    const newTeamPlayers = [...team.teamPlayers];
+    newTeamPlayers[i] = newPlayer;
+    const newTeam = { ...team, teamPlayers: newTeamPlayers };
     if (newPlayer.rating !== null) {
-      setRating(Math.floor(team.rating + parseInt(newPlayer.rating)));
+      let newRating = newTeam.rating + Math.floor(parseInt(newPlayer.rating));
+      setTeam({ ...newTeam, rating: newRating });
+    } else {
+      setTeam({ ...newTeam });
     }
-    setTeam({ ...team });
   };
 
   return (
