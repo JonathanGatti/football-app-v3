@@ -47,6 +47,10 @@ function TeamForm({
     }
   }, [nameError, logoError]);
 
+  const checkImgUlr = (e: any) => {
+    setLogoError(true);
+  };
+
   return (
     <Container>
       <div>
@@ -93,7 +97,7 @@ function TeamForm({
           Your Team Rating: <span>{team.rating}</span>
         </p>
       </Label>
-      <img src={team.logo} alt="logo" />
+      <img onError={checkImgUlr} src={team.logo} alt="logo" />
       <Button disabled={disableBtn} type="button" onClick={onClick}>
         Submit
       </Button>
