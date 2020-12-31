@@ -51,7 +51,7 @@ function EditTeam({ match, fetchTeam, team, editTeam, auth }: any) {
             onNameChange={handleNameChange}
             onLogoChange={handleLogoChange}
             onClick={handleSubmit}
-            team={team}
+            team={newTeam}
           />
           <TeamPlayers team={newTeam} setTeam={setNewTeam} />
         </>
