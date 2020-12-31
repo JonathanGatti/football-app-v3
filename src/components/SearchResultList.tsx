@@ -26,6 +26,10 @@ function SearchResultList({
         <div>
           <Icon name="user" />
           {player.player_name}
+          <div>
+            <span>{player.position} </span>
+            <span> {player.birth_country}</span>
+          </div>
         </div>
         <Button
           size="small"

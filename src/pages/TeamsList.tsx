@@ -19,7 +19,6 @@ function TeamsList({
 
   const handleClick = (id: string) => {
     deleteTeam!(id);
-    console.log(teams);
   };
   const renderTeams = () => {
     if (teams.length === 0) {

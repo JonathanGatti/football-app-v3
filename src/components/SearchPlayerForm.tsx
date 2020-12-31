@@ -38,6 +38,7 @@ function SearchPlayerForm({
     }
     setTeam({ ...team });
   };
+
   return (
     <>
       <form
@@ -56,7 +57,10 @@ function SearchPlayerForm({
       </form>
       <Modal
         basic
-        onClose={() => setOpen(false)}
+        onClose={() => {
+          setOpen(false);
+          setSearchResult([]);
+        }}
         onOpen={() => setOpen(true)}
         open={open}
         size="small"
