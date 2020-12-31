@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { fetchTeam } from '../actions';
 import { ShowTeamProps } from '../interfaces';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import TeamLayout from '../components/TeamLayout';
 
 const Container = styled.div`
@@ -44,6 +45,9 @@ function ShowTeam({ match, fetchTeam, team, auth }: ShowTeamProps) {
             <h5>Rating: {team.rating}</h5>
             <img src={team.logo} alt="logo" />
           </TeamStats>
+          <Button as={Link} to={`/edit/${team._id}`}>
+            Edit{' '}
+          </Button>
           <TeamLayout team={team} />
         </Container>
       );

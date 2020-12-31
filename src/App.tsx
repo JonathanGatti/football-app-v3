@@ -6,6 +6,7 @@ import TeamFight from './pages/TeamFight';
 import TeamsList from './pages/TeamsList';
 import ShowTeam from './pages/ShowTeam';
 import Header from './components/Header';
+import EditTeam from './pages/EditTeam';
 import { AppContainer } from './styles/styledComponents';
 
 function App() {
@@ -23,6 +24,11 @@ function App() {
             render={(routeProps) => <ShowTeam {...routeProps} />}
           />
           <Route exact path="/list" render={() => <TeamsList />} />
+          <Route
+            exact
+            path="/edit/:id"
+            render={(routeProps) => <EditTeam {...routeProps} />}
+          />
         </Switch>
       </AppContainer>
     </>
