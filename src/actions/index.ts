@@ -44,6 +44,7 @@ export const editTeam = (team: Team, id:string) => {
     const res = await teams.put(`/api/teams/${id}`, team)
 
     dispatch({type: EDIT_TEAM, payload: res.data });
+    window.location.assign('/football-app-v3/#/list')
   }
 }
 

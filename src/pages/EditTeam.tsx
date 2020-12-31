@@ -33,7 +33,7 @@ function EditTeam({ match, fetchTeam, team, editTeam, auth }: any) {
     forceUpdate(e);
   };
   const handleNameChange = (e: any) => {
-    setNewTeam({ ...newTeam, teamName: e.target.value });
+    setNewTeam({ ...newTeam, teamName: e.target.value.toUpperCase() });
   };
 
   const handleLogoChange = (e: any) => {
