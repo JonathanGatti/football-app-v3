@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { Grid, PlayerDiv } from '../styles/styledComponents';
-import SearchPlayerForm from '../components/SearchPlayerForm';
-import PlayerCard from '../components/PlayerCard';
 import GoogleAuth from '../components/GoogleAuth';
 import { Team } from '../interfaces';
 import { connect } from 'react-redux';
@@ -11,10 +8,11 @@ import { createTeam } from '../actions';
 import { CreateTeamProps } from '../interfaces';
 import TeamForm from '../components/TeamForm';
 import { Icon } from 'semantic-ui-react';
+import TeamPLayers from '../components/TeamPlayers';
 
 function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   const forceUpdate = useForceUpdate();
-  const [team, setTeam] = useState<Team>(defaultTeam);
+  const [team, setTeam] = useState(defaultTeam);
 
   const handleSelectChange = (e: any) => {
     const newModule = e.target.value.split(',');
@@ -64,27 +62,7 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
             onClick={handleClick}
             team={team}
           />
-          <Grid>
-            <div className="ui centered grid">
-              {team.teamModule.map((size, i) => (
-                <div key={i} className={`${size} wide column`}>
-                  {team.teamPlayers[i]._id === 0 ? (
-                    <PlayerDiv>
-                      <SearchPlayerForm
-                        team={team}
-                        setTeam={setTeam}
-                        index={i}
-                      />
-                    </PlayerDiv>
-                  ) : (
-                    <PlayerDiv key={i}>
-                      <PlayerCard player={team.teamPlayers[i]} />
-                    </PlayerDiv>
-                  )}
-                </div>
-              ))}
-            </div>
-          </Grid>
+          <TeamPLayers team={team} setTeam={setTeam} />
         </>
       );
     }

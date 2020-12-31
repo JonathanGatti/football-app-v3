@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { fetchTeam } from '../actions';
 import { ShowTeamProps } from '../interfaces';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import TeamLayout from '../components/TeamLayout';
 
 const Container = styled.div`
@@ -20,11 +21,13 @@ const TeamStats = styled.div`
   margin-right: 2em;
   width: 25%;
   height: 70vh;
-  border: 2px solid black;
   border-radius: 20px;
   img {
     max-width: 60%;
     max-height: 60%;
+  }
+  .edit-btn {
+    margin-top: auto;
   }
 `;
 
@@ -43,6 +46,16 @@ function ShowTeam({ match, fetchTeam, team, auth }: ShowTeamProps) {
             <h2>{team.teamName}</h2>
             <h5>Rating: {team.rating}</h5>
             <img src={team.logo} alt="logo" />
+            {auth.userId === team.userId && (
+              <Button
+                color="blue"
+                className="edit-btn"
+                as={Link}
+                to={`/edit/${team._id}`}
+              >
+                Edit
+              </Button>
+            )}
           </TeamStats>
           <TeamLayout team={team} />
         </Container>

@@ -41,9 +41,10 @@ export const createTeam = (team: Team ) => {
 
 export const editTeam = (team: Team, id:string) => {
   return async (dispatch: any) => {
-    teams.put(`/api/teams/${id}`)
+    const res = await teams.put(`/api/teams/${id}`, team)
 
-    dispatch({type: EDIT_TEAM, payload: team });
+    dispatch({type: EDIT_TEAM, payload: res.data });
+    window.location.assign('/football-app-v3/#/list')
   }
 }
 
