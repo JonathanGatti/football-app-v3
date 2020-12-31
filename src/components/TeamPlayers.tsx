@@ -2,9 +2,12 @@ import React from 'react';
 import { Grid, PlayerDiv } from '../styles/styledComponents';
 import SearchPlayerForm from '../components/SearchPlayerForm';
 import PlayerCard from '../components/PlayerCard';
-import { Icon } from 'semantic-ui-react';
+import { defaultTeam } from '../utils/defaultTeam';
 
 function TeamPLayers({ team, setTeam }: any) {
+  if (team.teamModule === undefined) {
+    team = { ...defaultTeam };
+  }
   return (
     <>
       <Grid>
