@@ -1,5 +1,5 @@
 import {SIGN_IN, SIGN_OUT, FETCH_TEAM, FETCH_TEAMS, CREATE_TEAM, DELETE_TEAM, EDIT_TEAM} from './types';
-import {Team, Player} from '../interfaces';
+import {Team} from '../interfaces';
 import teams from '../api/teams';
 
 export const signIn = (userId: string | number) => {

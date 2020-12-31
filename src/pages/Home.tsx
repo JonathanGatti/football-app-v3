@@ -35,7 +35,7 @@ function Home() {
             />
           </div>
         </div>
-        <img src={image} />
+        <img src={image} alt="home page" />
       </div>
     </HomePage>
   );
