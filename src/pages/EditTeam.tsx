@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useTeam } from '../hooks/useTeam';
 import { Team } from '../interfaces';
-import { Grid, PlayerDiv } from '../styles/styledComponents';
-import SearchPlayerForm from '../components/SearchPlayerForm';
+import TeamPlayers from '../components/TeamPlayers';
 import { connect } from 'react-redux';
-import PlayerCard from '../components/PlayerCard';
 import { Icon } from 'semantic-ui-react';
 import { editTeam, fetchTeam } from '../actions';
 import TeamForm from '../components/TeamForm';
 import { useForceUpdate } from '../utils/forceComponentUpdate';
-import { defaultTeam } from '../utils/defaultTeam';
 
 interface TeamFormProps {
   onSelectChange: (e: any) => void;
@@ -21,7 +17,7 @@ interface TeamFormProps {
 
 function EditTeam({ match, fetchTeam, team, editTeam, auth }: any) {
   const forceUpdate = useForceUpdate();
-  const [newTeam, setNewTeam] = useState({ ...team });
+  const [newTeam, setNewTeam] = useState<Team>({ ...team });
 
   useEffect(() => {
     fetchTeam(match.params.id);
@@ -57,27 +53,7 @@ function EditTeam({ match, fetchTeam, team, editTeam, auth }: any) {
             onClick={handleSubmit}
             team={team}
           />
-          <Grid>
-            <div className="ui centered grid">
-              {newTeam.teamModule.map((size: string, i: number) => (
-                <div key={i} className={`${size} wide column`}>
-                  {newTeam.teamPlayers[i]._id === 0 ? (
-                    <PlayerDiv>
-                      <SearchPlayerForm
-                        team={newTeam}
-                        setTeam={setNewTeam}
-                        index={i}
-                      />
-                    </PlayerDiv>
-                  ) : (
-                    <PlayerDiv key={i}>
-                      <PlayerCard player={newTeam.teamPlayers[i]} />
-                    </PlayerDiv>
-                  )}
-                </div>
-              ))}
-            </div>
-          </Grid>
+          <TeamPlayers team={newTeam} setTeam={setNewTeam} />
         </>
       );
     }
