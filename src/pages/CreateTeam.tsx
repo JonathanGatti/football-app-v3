@@ -18,20 +18,18 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
 
   const handleSelectChange = (e: any) => {
     const newModule = e.target.value.split(',');
-    team.teamModule = newModule;
+    setTeam({ ...team, teamModule: newModule });
     forceUpdate(e);
   };
   const handleNameChange = (e: any) => {
-    team.teamName = e.target.value;
+    setTeam({ ...team, teamName: e.target.value });
     forceUpdate(e);
   };
 
   const handleLogoChange = (e: any) => {
-    team.logo = e.target.value;
+    setTeam({ ...team, logo: e.target.value });
     forceUpdate(e);
   };
-
-  const setRating = (newRating: number) => (team.rating = newRating);
 
   const handleClick = () => {
     const data = {
@@ -74,7 +72,6 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
                     <PlayerDiv>
                       <SearchPlayerForm
                         team={team}
-                        setRating={setRating}
                         setTeam={setTeam}
                         index={i}
                       />

@@ -38,7 +38,6 @@ function TeamFight({ teams, fetchTeams }: TeamFightProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    console.log(defaultTeam);
     fetchTeams();
   }, [team1, team2]);
 

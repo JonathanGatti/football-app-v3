@@ -22,6 +22,10 @@ const TeamStats = styled.div`
   height: 70vh;
   border: 2px solid black;
   border-radius: 20px;
+  img {
+    max-width: 60%;
+    max-height: 60%;
+  }
 `;
 
 function ShowTeam({ match, fetchTeam, team, auth }: ShowTeamProps) {
