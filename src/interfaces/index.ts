@@ -74,14 +74,13 @@ export interface CreateTeamProps {
 export interface ShowTeamProps {
   match: any;
   fetchTeam: Function;
+  deleteTeam: Function;
   team: Team;
   auth: { isSignedIn: boolean; userId: string };
 }
 
 export interface TeamsListProps {
   teams: any;
-  auth: { isSignedIn: boolean; userId: string };
   fetchTeams: Function;
-  deleteTeam: Function;
   addToFightBtn?: any;
 }

@@ -53,5 +53,6 @@ export const deleteTeam = (id: string) => {
     await teams.delete(`/api/teams/${id}`)
 
     dispatch({ type: DELETE_TEAM, payload: id })
+    window.location.assign('/football-app-v3/#/list')
   }
 }

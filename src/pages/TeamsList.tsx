@@ -6,20 +6,11 @@ import { Button, Card, Image, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { TeamsListProps } from '../interfaces';
 
-function TeamsList({
-  teams,
-  auth,
-  fetchTeams,
-  deleteTeam,
-  addToFightBtn,
-}: TeamsListProps) {
+function TeamsList({ teams, fetchTeams, addToFightBtn }: TeamsListProps) {
   useEffect(() => {
     fetchTeams();
   }, [teams.length]);
 
-  const handleClick = (id: string) => {
-    deleteTeam!(id);
-  };
   const renderTeams = () => {
     if (teams.length === 0) {
       return <Icon loading name="spinner" />;
@@ -41,15 +32,6 @@ function TeamsList({
                           Go To Team
                         </Button>
                       </Link>
-                      {auth.userId === team.userId ? (
-                        <Button
-                          basic
-                          color="red"
-                          onClick={(e) => handleClick(team._id!)}
-                        >
-                          DELETE
-                        </Button>
-                      ) : null}
                     </>
                   ) : (
                     addToFightBtn!(team)

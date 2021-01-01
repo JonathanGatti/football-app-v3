@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { fetchTeam } from '../actions';
+import { fetchTeam, deleteTeam } from '../actions';
 import { ShowTeamProps } from '../interfaces';
 import { Icon, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -26,15 +26,22 @@ const TeamStats = styled.div`
     max-width: 60%;
     max-height: 60%;
   }
-  .edit-btn {
-    margin-top: auto;
+  div {
+    height: 100%;
+    display: flex;
+    align-items:flex-end
+  }
   }
 `;
 
-function ShowTeam({ match, fetchTeam, team, auth }: ShowTeamProps) {
+function ShowTeam({ match, fetchTeam, deleteTeam, team, auth }: ShowTeamProps) {
   useEffect(() => {
     fetchTeam(match.params.id);
   }, [auth.isSignedIn]);
+
+  const handleClick = (id: string) => {
+    deleteTeam(id);
+  };
 
   const renderTeam = () => {
     if (!team) {
@@ -47,14 +54,25 @@ function ShowTeam({ match, fetchTeam, team, auth }: ShowTeamProps) {
             <h5>Rating: {team.rating}</h5>
             <img src={team.logo} alt="logo" />
             {auth.userId === team.userId && (
-              <Button
-                color="blue"
-                className="edit-btn"
-                as={Link}
-                to={`/edit/${team._id}`}
-              >
-                Edit
-              </Button>
+              <div>
+                <Button
+                  className="btn"
+                  basic
+                  color="blue"
+                  as={Link}
+                  to={`/edit/${team._id}`}
+                >
+                  Edit
+                </Button>
+                <Button
+                  className="btn"
+                  basic
+                  color="red"
+                  onClick={(e) => handleClick(team._id!)}
+                >
+                  DELETE
+                </Button>
+              </div>
             )}
           </TeamStats>
           <TeamLayout team={team} />
@@ -68,4 +86,4 @@ function ShowTeam({ match, fetchTeam, team, auth }: ShowTeamProps) {
 const mapStateToProps = (state: any, ownProps: any) => {
   return { team: state.teams![ownProps.match.params.id], auth: state.auth };
 };
-export default connect(mapStateToProps, { fetchTeam })(ShowTeam);
+export default connect(mapStateToProps, { fetchTeam, deleteTeam })(ShowTeam);
