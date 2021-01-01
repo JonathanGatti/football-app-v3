@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import GoogleAuth from '../components/GoogleAuth';
-import { Team } from '../interfaces';
 import { connect } from 'react-redux';
 import { defaultTeam } from '../utils/defaultTeam';
-import { useForceUpdate } from '../utils/forceComponentUpdate';
+import { useForceUpdate } from '../hooks/forceComponentUpdate';
 import { createTeam } from '../actions';
 import { CreateTeamProps } from '../interfaces';
 import TeamForm from '../components/TeamForm';

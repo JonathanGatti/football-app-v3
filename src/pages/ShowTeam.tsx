@@ -6,32 +6,11 @@ import { ShowTeamProps } from '../interfaces';
 import { Icon, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import TeamLayout from '../components/TeamLayout';
+import { TeamStats } from '../styles/styledComponents';
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
-`;
-
-const TeamStats = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  justify-content: center;
-  align-items: center;
-  margin-right: 2em;
-  width: 25%;
-  height: 70vh;
-  border-radius: 20px;
-  img {
-    max-width: 60%;
-    max-height: 60%;
-  }
-  div {
-    height: 100%;
-    display: flex;
-    align-items:flex-end
-  }
-  }
 `;
 
 function ShowTeam({ match, fetchTeam, deleteTeam, team, auth }: ShowTeamProps) {

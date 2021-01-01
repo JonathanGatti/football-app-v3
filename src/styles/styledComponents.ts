@@ -73,3 +73,68 @@ export const HomePage = styled.div`
     }
   }
 `;
+
+export const TeamFormContainer = styled.div`
+  background-color: rgba(2, 5, 47, 0.85);
+  color: white;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 70vh;
+  padding-top: 2em;
+  padding-bottom: 1em;
+  padding-left: 0.4em;
+  border-radius: 15px;
+  .label {
+    max-width: 90%;
+    margin-top: 0.6em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  img {
+    margin: auto;
+    max-width: 40%;
+    max-height: 40%;
+  }
+`;
+
+export const TeamStats = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2em;
+  width: 25%;
+  height: 70vh;
+  border-radius: 20px;
+  img {
+    max-width: 60%;
+    max-height: 60%;
+  }
+  div {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+`;
+
+export const TeamFightContainer = styled.div`
+  display: flex;
+  .content {
+    display: flex;
+    justify-content: space-between;
+  }
+  .modal {
+  }
+  .list {
+    width: 65%;
+    max-height: 70vh;
+    overflow: scroll;
+  }
+  .btns {
+    align-self: flex-end;
+  }
+`;

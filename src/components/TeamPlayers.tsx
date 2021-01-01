@@ -3,8 +3,13 @@ import { Grid, PlayerDiv } from '../styles/styledComponents';
 import SearchPlayerForm from '../components/SearchPlayerForm';
 import PlayerCard from '../components/PlayerCard';
 import { defaultTeam } from '../utils/defaultTeam';
+import { Team } from '../interfaces';
 
-function TeamPLayers({ team, setTeam }: any) {
+interface TeamPlayersProps {
+  team: Team;
+  setTeam: Function;
+}
+function TeamPLayers({ team, setTeam }: TeamPlayersProps) {
   if (team.teamModule === undefined) {
     team = { ...defaultTeam };
   }

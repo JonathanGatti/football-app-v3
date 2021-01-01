@@ -74,10 +74,3 @@ export const getPlayerById = async (id: number) => {
 export const deleteTeam = (id: string) => {
   teams.delete(`/api/teams/${id}`)
 }
-
-const deletePlayers = async () => {
-  const res = await getPlayers();
-  res.map((player: Player) => (
-    teams.delete(`/api/players/${player._id}`)
-  ))
-}

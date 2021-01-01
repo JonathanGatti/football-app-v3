@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { fetchTeams } from '../actions';
 import { Icon, Button, Modal, Header } from 'semantic-ui-react';
@@ -7,27 +6,10 @@ import { Team } from '../interfaces';
 import TeamsList from './TeamsList';
 import { defaultTeam } from '../utils/defaultTeam';
 import TeamLayout from '../components/TeamLayout';
-
-const Container = styled.div`
-  display: flex;
-  .content {
-    display: flex;
-    justify-content: space-between;
-  }
-  .modal {
-  }
-  .list {
-    width: 65%;
-    max-height: 70vh;
-    overflow: scroll;
-  }
-  .btns {
-    align-self: flex-end;
-  }
-`;
+import { TeamFightContainer } from '../styles/styledComponents';
 
 interface TeamFightProps {
-  teams: any;
+  teams: Team[];
   fetchTeams: () => void;
 }
 
@@ -71,7 +53,7 @@ function TeamFight({ teams, fetchTeams }: TeamFightProps) {
     } else {
       return (
         <>
-          <Container>
+          <TeamFightContainer>
             <Modal open={open} basic size="small">
               <Modal.Content>
                 <p>
@@ -105,7 +87,7 @@ function TeamFight({ teams, fetchTeams }: TeamFightProps) {
                 <TeamLayout team={team2} />
               </div>
             </div>
-          </Container>
+          </TeamFightContainer>
           <div className="btns">
             <Button onClick={handleFightBtn}>Fight!</Button>
             <Button onClick={handleResetBtn}>Reset</Button>

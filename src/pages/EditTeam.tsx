@@ -5,17 +5,18 @@ import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
 import { editTeam, fetchTeam } from '../actions';
 import TeamForm from '../components/TeamForm';
-import { useForceUpdate } from '../utils/forceComponentUpdate';
+import { useForceUpdate } from '../hooks/forceComponentUpdate';
 
-interface TeamFormProps {
-  onSelectChange: (e: any) => void;
-  onNameChange: (e: any) => void;
-  onLogoChange: (e: any) => void;
-  onClick: () => void;
+interface EditTeamProps {
+  fetchTeam: Function;
+  editTeam: Function;
+  auth: { isSignedIn: boolean; userId: string | undefined };
+  onClick?: () => void;
   team: Team;
+  match: any;
 }
 
-function EditTeam({ match, fetchTeam, team, editTeam, auth }: any) {
+function EditTeam({ match, fetchTeam, team, editTeam, auth }: EditTeamProps) {
   const forceUpdate = useForceUpdate();
   const [newTeam, setNewTeam] = useState<Team>({ ...team });
 
@@ -37,7 +38,7 @@ function EditTeam({ match, fetchTeam, team, editTeam, auth }: any) {
   };
 
   const handleSubmit = () => {
-    editTeam(newTeam, team._id);
+    editTeam(newTeam, team._id!);
   };
 
   const render = () => {
@@ -60,7 +61,12 @@ function EditTeam({ match, fetchTeam, team, editTeam, auth }: any) {
   };
   return <>{render()}</>;
 }
-const mapStateToProps = (state: any, ownProps: any) => {
+
+interface mapStateToProps {
+  state: any;
+  ownProps: any;
+}
+const mapStateToProps = ({ state, ownProps }: mapStateToProps) => {
   return { team: state.teams![ownProps.match.params.id], auth: state.auth };
 };
 export default connect(mapStateToProps, { editTeam, fetchTeam })(EditTeam);

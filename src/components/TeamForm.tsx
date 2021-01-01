@@ -1,34 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { Label, Form, Button } from 'semantic-ui-react';
 import { classic, defensive, offensive } from '../utils/teamModules';
 import { TeamFormProps } from '../interfaces';
-
-const Container = styled.div`
-  background-color: rgba(2, 5, 47, 0.85);
-  color: white;
-  margin-right: 1rem;
-  display: flex;
-  flex-direction: column;
-  width: 25%;
-  height: 70vh;
-  padding-top: 2em;
-  padding-bottom: 1em;
-  padding-left: 0.4em;
-  border-radius: 15px;
-  .label {
-    max-width: 90%;
-    margin-top: 0.6em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  img {
-    margin: auto;
-    max-width: 40%;
-    max-height: 40%;
-  }
-`;
+import { TeamFormContainer } from '../styles/styledComponents';
 
 function TeamForm({
   onSelectChange,
@@ -52,7 +26,7 @@ function TeamForm({
   };
 
   return (
-    <Container>
+    <TeamFormContainer>
       <div>
         <h3>Your Team Name: {team.teamName}</h3>
       </div>
@@ -101,7 +75,7 @@ function TeamForm({
       <Button disabled={disableBtn} type="button" onClick={onClick}>
         Submit
       </Button>
-    </Container>
+    </TeamFormContainer>
   );
 }
 
