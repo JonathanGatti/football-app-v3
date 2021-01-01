@@ -66,7 +66,7 @@ interface mapStateToProps {
   state: any;
   ownProps: any;
 }
-const mapStateToProps = ({ state, ownProps }: mapStateToProps) => {
+const mapStateToProps = (state: any, ownProps: any) => {
   return { team: state.teams![ownProps.match.params.id], auth: state.auth };
 };
 export default connect(mapStateToProps, { editTeam, fetchTeam })(EditTeam);
