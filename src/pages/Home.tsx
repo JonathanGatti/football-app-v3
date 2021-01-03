@@ -25,7 +25,7 @@ function Home() {
               as={Link}
               to="/list"
               attached="bottom"
-              content="List of All The Teams"
+              content="List The Teams"
             />
             <Button
               as={Link}

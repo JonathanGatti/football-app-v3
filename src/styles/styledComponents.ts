@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import pitch from '../assets/imgs/3dsection.png';
+import {mediaQueries} from './mediaQueries';
 
 export const AppContainer = styled.div`
   font-family: sans-serif;
@@ -70,6 +71,20 @@ export const HomePage = styled.div`
       max-width: 50%;
       max-height: 65vh;
       border-radius: 30px;
+    }
+  }
+  @media ${mediaQueries.tablet} {
+    .header {
+      flex-wrap: wrap;
+    flex-direction: column;
+    }
+    img {
+      flex:1;
+      margin-top: 1em;
+    }
+    .buttons {
+      max-width: 50px;
+      max-height: 60px;
     }
   }
 `;
