@@ -5,7 +5,7 @@ import GoogleAuth from './GoogleAuth';
 
 const Header = () => {
   return (
-    <Menu>
+    <Menu stackable>
       <Menu.Item name="Menu">
         <Link to="/">Home</Link>
       </Menu.Item>

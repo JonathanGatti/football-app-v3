@@ -6,6 +6,7 @@ import { Icon } from 'semantic-ui-react';
 import { editTeam, fetchTeam } from '../actions';
 import TeamForm from '../components/TeamForm';
 import { useForceUpdate } from '../hooks/forceComponentUpdate';
+import { TeamContainer } from '../styles/styledComponents';
 
 interface EditTeamProps {
   fetchTeam: Function;
@@ -46,7 +47,7 @@ function EditTeam({ match, fetchTeam, team, editTeam, auth }: EditTeamProps) {
       return <Icon loading name="spinner" />;
     } else {
       return (
-        <>
+        <TeamContainer>
           <TeamForm
             onSelectChange={handleSelectChange}
             onNameChange={handleNameChange}
@@ -55,7 +56,7 @@ function EditTeam({ match, fetchTeam, team, editTeam, auth }: EditTeamProps) {
             team={newTeam}
           />
           <TeamPlayers team={newTeam} setTeam={setNewTeam} />
-        </>
+        </TeamContainer>
       );
     }
   };

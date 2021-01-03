@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import pitch from '../assets/imgs/3dsection.png';
+import {mediaQueries} from './mediaQueries';
 
 export const AppContainer = styled.div`
   font-family: sans-serif;
@@ -35,6 +36,9 @@ export const PlayerInfoContainer = styled.div`
   .card {
     display: flex;
     flex-direction: column;
+  }
+  @media ${mediaQueries.laptop}{
+    width: 30vw;
   }
 `;
 
@@ -72,7 +76,28 @@ export const HomePage = styled.div`
       border-radius: 30px;
     }
   }
+  @media ${mediaQueries.tablet} {
+    .header {
+      flex-wrap: wrap;
+    flex-direction: column;
+    }
+    img {
+      flex:1;
+      margin-top: 1em;
+    }
+    .buttons {
+      max-width: 50px;
+      max-height: 60px;
+    }
+  }
 `;
+
+export const TeamContainer = styled.div`
+  display: flex;
+  @media ${mediaQueries.laptop}{
+  flex-direction: column;
+}
+`
 
 export const TeamFormContainer = styled.div`
   background-color: rgba(2, 5, 47, 0.85);
@@ -98,14 +123,22 @@ export const TeamFormContainer = styled.div`
     max-width: 40%;
     max-height: 40%;
   }
+  @media ${mediaQueries.laptop}{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media ${mediaQueries.tablet}{
+    width: 80%;
+  }
 `;
 
 export const TeamStats = styled.div`
   display: flex;
   flex-direction: column;
-  align-self: center;
   justify-content: center;
   align-items: center;
+  align-self: center;
   margin-right: 2em;
   width: 25%;
   height: 70vh;
@@ -114,10 +147,8 @@ export const TeamStats = styled.div`
     max-width: 60%;
     max-height: 60%;
   }
-  div {
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
+  @media ${mediaQueries.laptop}{
+    width: 80%;
   }
 `;
 
@@ -127,8 +158,6 @@ export const TeamFightContainer = styled.div`
     display: flex;
     justify-content: space-between;
   }
-  .modal {
-  }
   .list {
     width: 65%;
     max-height: 70vh;
@@ -136,5 +165,17 @@ export const TeamFightContainer = styled.div`
   }
   .btns {
     align-self: flex-end;
+  }
+  @media ${mediaQueries.laptop}{
+    flex-direction: column;
+    .list {
+      width: 90%;
+      margin-bottom: 1em;
+      margin-left: auto;
+      margin-right: auto;
+    } 
+    .content {
+      flex-direction: column;
+    }
   }
 `;

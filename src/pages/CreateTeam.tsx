@@ -8,6 +8,7 @@ import { CreateTeamProps } from '../interfaces';
 import TeamForm from '../components/TeamForm';
 import { Icon } from 'semantic-ui-react';
 import TeamPLayers from '../components/TeamPlayers';
+import { TeamContainer } from '../styles/styledComponents';
 
 function CreateTeam({ createTeam, auth }: CreateTeamProps) {
   const forceUpdate = useForceUpdate();
@@ -53,7 +54,7 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
       );
     } else {
       return (
-        <>
+        <TeamContainer>
           <TeamForm
             onSelectChange={handleSelectChange}
             onNameChange={handleNameChange}
@@ -62,7 +63,7 @@ function CreateTeam({ createTeam, auth }: CreateTeamProps) {
             team={team}
           />
           <TeamPLayers team={team} setTeam={setTeam} />
-        </>
+        </TeamContainer>
       );
     }
   };
