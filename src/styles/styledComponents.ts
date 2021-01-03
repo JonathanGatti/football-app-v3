@@ -37,6 +37,9 @@ export const PlayerInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
   }
+  @media ${mediaQueries.laptop}{
+    width: 30vw;
+  }
 `;
 
 export const PlayerCardContainer = styled.div`
@@ -155,8 +158,6 @@ export const TeamFightContainer = styled.div`
     display: flex;
     justify-content: space-between;
   }
-  .modal {
-  }
   .list {
     width: 65%;
     max-height: 70vh;
@@ -164,5 +165,17 @@ export const TeamFightContainer = styled.div`
   }
   .btns {
     align-self: flex-end;
+  }
+  @media ${mediaQueries.laptop}{
+    flex-direction: column;
+    .list {
+      width: 90%;
+      margin-bottom: 1em;
+      margin-left: auto;
+      margin-right: auto;
+    } 
+    .content {
+      flex-direction: column;
+    }
   }
 `;
