@@ -7,10 +7,14 @@ import { Icon, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import TeamLayout from '../components/TeamLayout';
 import { TeamStats } from '../styles/styledComponents';
+import { mediaQueries } from '../styles/mediaQueries';
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  @media ${mediaQueries.laptop} {
+    flex-direction: column;
+  }
 `;
 
 function ShowTeam({ match, fetchTeam, deleteTeam, team, auth }: ShowTeamProps) {

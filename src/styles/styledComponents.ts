@@ -89,6 +89,13 @@ export const HomePage = styled.div`
   }
 `;
 
+export const TeamContainer = styled.div`
+  display: flex;
+  @media ${mediaQueries.laptop}{
+  flex-direction: column;
+}
+`
+
 export const TeamFormContainer = styled.div`
   background-color: rgba(2, 5, 47, 0.85);
   color: white;
@@ -113,14 +120,22 @@ export const TeamFormContainer = styled.div`
     max-width: 40%;
     max-height: 40%;
   }
+  @media ${mediaQueries.laptop}{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media ${mediaQueries.tablet}{
+    width: 80%;
+  }
 `;
 
 export const TeamStats = styled.div`
   display: flex;
   flex-direction: column;
-  align-self: center;
   justify-content: center;
   align-items: center;
+  align-self: center;
   margin-right: 2em;
   width: 25%;
   height: 70vh;
@@ -129,10 +144,8 @@ export const TeamStats = styled.div`
     max-width: 60%;
     max-height: 60%;
   }
-  div {
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
+  @media ${mediaQueries.laptop}{
+    width: 80%;
   }
 `;
 
